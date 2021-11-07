@@ -1,7 +1,7 @@
 <?php
 
 
-class CategoriaP{
+class ListaPrecio{
 
 private $id_lista_precio;
 private $id_kermesse;
