@@ -16,14 +16,14 @@ class dt_lista_preciodet extends Conexion
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ)as $r)
             {
-                $cg = new ListaPrecioDet();
+                $lpd = new ListaPrecioDet();
 
-                $cg->__SET('id_listaprecio_det', $r->id_listaprecio_det);
-                $cg->__SET('id_lista_precio', $r->id_lista_precio);
-                $cg->__SET('id_producto', $r->id_producto);
-                $cg->__SET('precio_venta', $r->precio_venta);
+                $lpd->__SET('id_listaprecio_det', $r->id_listaprecio_det);
+                $lpd->__SET('id_lista_precio', $r->id_lista_precio);
+                $lpd->__SET('id_producto', $r->id_producto);
+                $lpd->__SET('precio_venta', $r->precio_venta);
                 
-                $result[] = $cg;
+                $result[] = $lpd;
             }
             $this ->myCon = parent::desconectar();
             return $result;
@@ -42,22 +42,22 @@ class dt_lista_preciodet extends Conexion
             $stm->execute(array($id));
 
             $r=$stm->fetch(PDO::FETCH_OBJ);
-            $cg = new ListaPrecioDet();
+            $lpd = new ListaPrecioDet();
             
-            $cg->__SET('id_listaprecio_det', $r->id_listaprecio_det);
-            $cg->__SET('id_lista_precio', $r->id_lista_precio);
-            $cg->__SET('id_producto', $r->id_producto);
-            $cg->__SET('precio_venta', $r->precio_venta);
+            $lpd->__SET('id_listaprecio_det', $r->id_listaprecio_det);
+            $lpd->__SET('id_lista_precio', $r->id_lista_precio);
+            $lpd->__SET('id_producto', $r->id_producto);
+            $lpd->__SET('precio_venta', $r->precio_venta);
 
             $this->myCon = parent::desconectar();
-            return $cg;
+            return $lpd;
 
 
         }
 
-        catch (Exception $cg)
+        catch (Exception $lpd)
         {
-            die($cg->getMessage());
+            die($lpd->getMessage());
         }
     }
 }

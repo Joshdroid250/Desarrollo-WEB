@@ -16,16 +16,16 @@ class dt_parroquia extends Conexion
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ)as $r)
             {
-                $cg = new parroquia();
+                $pr = new parroquia();
 
-                $cg->__SET('idParroquia', $r->idParroquia);
-                $cg->__SET('nombre', $r->nombre);
-                $cg->__SET('direccion', $r->direccion);
-                $cg->__SET('parroco', $r->parroco);
-                $cg->__SET('logo', $r->logo);
-                $cg->__SET('sitio_web', $r->sitio_web);
+                $pr->__SET('idParroquia', $r->idParroquia);
+                $pr->__SET('nombre', $r->nombre);
+                $pr->__SET('direccion', $r->direccion);
+                $pr->__SET('parroco', $r->parroco);
+                $pr->__SET('logo', $r->logo);
+                $pr->__SET('sitio_web', $r->sitio_web);
                 
-                $result[] = $cg;
+                $result[] = $pr;
             }
             $this ->myCon = parent::desconectar();
             return $result;
@@ -44,24 +44,24 @@ class dt_parroquia extends Conexion
             $stm->execute(array($id));
 
             $r=$stm->fetch(PDO::FETCH_OBJ);
-            $cg = new kermesse();
+            $pr = new kermesse();
             
-            $cg->__SET('idParroquia', $r->idParroquia);
-            $cg->__SET('nombre', $r->nombre);
-            $cg->__SET('direccion', $r->direccion);
-            $cg->__SET('parroco', $r->parroco);
-            $cg->__SET('logo', $r->logo);
-            $cg->__SET('sitio_web', $r->sitio_web);
+            $pr->__SET('idParroquia', $r->idParroquia);
+            $pr->__SET('nombre', $r->nombre);
+            $pr->__SET('direccion', $r->direccion);
+            $pr->__SET('parroco', $r->parroco);
+            $pr->__SET('logo', $r->logo);
+            $pr->__SET('sitio_web', $r->sitio_web);
 
             $this->myCon = parent::desconectar();
-            return $cg;
+            return $pr;
 
 
         }
 
-        catch (Exception $cg)
+        catch (Exception $pr)
         {
-            die($cg->getMessage());
+            die($pr->getMessage());
         }
     }
 }

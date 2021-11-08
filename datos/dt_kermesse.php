@@ -16,23 +16,23 @@ class dt_kermesse extends Conexion
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ)as $r)
             {
-                $cg = new kermesse();
+                $kr = new kermesse();
 
-                $cg->__SET('id_kermesse', $r->id_kermesse);
-                $cg->__SET('idParroquia', $r->idParroquia);
-                $cg->__SET('nombre', $r->nombre);
-                $cg->__SET('fInicio', $r->fInicio);
-                $cg->__SET('fFinal', $r->fFinal);
-                $cg->__SET('descripcion', $r->descripcion);
-                $cg->__SET('estado', $r->estado);
-                $cg->__SET('usuario_creacion', $r->usuario_creacion);
-                $cg->__SET('fecha_creacion', $r->fecha_creacion);
-                $cg->__SET('usuario_modificacion', $r->usuario_modificacion);
-                $cg->__SET('fecha_modificacion', $r->fecha_modificacion);
-                $cg->__SET('usuario_eliminacion', $r->usuario_eliminacion);
-                $cg->__SET('fecha_eliminacion', $r->fecha_eliminacion);
+                $kr->__SET('id_kermesse', $r->id_kermesse);
+                $kr->__SET('idParroquia', $r->idParroquia);
+                $kr->__SET('nombre', $r->nombre);
+                $kr->__SET('fInicio', $r->fInicio);
+                $kr->__SET('fFinal', $r->fFinal);
+                $kr->__SET('descripcion', $r->descripcion);
+                $kr->__SET('estado', $r->estado);
+                $kr->__SET('usuario_creacion', $r->usuario_creacion);
+                $kr->__SET('fecha_creacion', $r->fecha_creacion);
+                $kr->__SET('usuario_modificacion', $r->usuario_modificacion);
+                $kr->__SET('fecha_modificacion', $r->fecha_modificacion);
+                $kr->__SET('usuario_eliminacion', $r->usuario_eliminacion);
+                $kr->__SET('fecha_eliminacion', $r->fecha_eliminacion);
                 
-                $result[] = $cg;
+                $result[] = $kr;
             }
             $this ->myCon = parent::desconectar();
             return $result;
@@ -51,24 +51,24 @@ class dt_kermesse extends Conexion
             $stm->execute(array($id));
 
             $r=$stm->fetch(PDO::FETCH_OBJ);
-            $cg = new kermesse();
+            $kr = new kermesse();
             
-            $cg->__SET('id_kermesse', $r->id_kermesse);
-            $cg->__SET('idParroquia', $r->idParroquia);
-            $cg->__SET('nombre', $r->nombre);
-            $cg->__SET('fInicio', $r->fInicio);
-            $cg->__SET('fFinal', $r->fFinal);
-            $cg->__SET('descripcion', $r->descripcion);
-            $cg->__SET('estado', $r->estado);
-            $cg->__SET('usuario_creacion', $r->usuario_creacion);
-            $cg->__SET('fecha_creacion', $r->fecha_creacion);
-            $cg->__SET('usuario_modificacion', $r->usuario_modificacion);
-            $cg->__SET('fecha_modificacion', $r->fecha_modificacion);
-            $cg->__SET('usuario_eliminacion', $r->usuario_eliminacion);
-            $cg->__SET('fecha_eliminacion', $r->fecha_eliminacion);
+            $kr->__SET('id_kermesse', $r->id_kermesse);
+            $kr->__SET('idParroquia', $r->idParroquia);
+            $kr->__SET('nombre', $r->nombre);
+            $kr->__SET('fInicio', $r->fInicio);
+            $kr->__SET('fFinal', $r->fFinal);
+            $kr->__SET('descripcion', $r->descripcion);
+            $kr->__SET('estado', $r->estado);
+            $kr->__SET('usuario_creacion', $r->usuario_creacion);
+            $kr->__SET('fecha_creacion', $r->fecha_creacion);
+            $kr->__SET('usuario_modificacion', $r->usuario_modificacion);
+            $kr->__SET('fecha_modificacion', $r->fecha_modificacion);
+            $kr->__SET('usuario_eliminacion', $r->usuario_eliminacion);
+            $kr->__SET('fecha_eliminacion', $r->fecha_eliminacion);
 
             $this->myCon = parent::desconectar();
-            return $cg;
+            return $kr;
 
 
         }

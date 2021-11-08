@@ -16,14 +16,14 @@ class dt_listaPrecio extends Conexion
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ)as $r)
             {
-                $cg = new listaprecio();
+                $lp = new listaprecio();
 
-                $cg->__SET('id_lista_precio', $r->id_lista_precio);
-                $cg->__SET('id_kermesse', $r->id_kermesse);
-                $cg->__SET('nombre', $r->nombre);
-                $cg->__SET('descripcion', $r->descripcion);
+                $lp->__SET('id_lista_precio', $r->id_lista_precio);
+                $lp->__SET('id_kermesse', $r->id_kermesse);
+                $lp->__SET('nombre', $r->nombre);
+                $lp->__SET('descripcion', $r->descripcion);
                 
-                $result[] = $cg;
+                $result[] = $lp;
             }
             $this ->myCon = parent::desconectar();
             return $result;
@@ -42,22 +42,22 @@ class dt_listaPrecio extends Conexion
             $stm->execute(array($id));
 
             $r=$stm->fetch(PDO::FETCH_OBJ);
-            $cg = new listaprecio();
+            $lp = new listaprecio();
             
-                $cg->__SET('id_lista_precio', $r->id_lista_precio);
-                $cg->__SET('id_kermesse', $r->id_kermesse);
-                $cg->__SET('nombre', $r->nombre);
-                $cg->__SET('descripcion', $r->descripcion);
+                $lp->__SET('id_lista_precio', $r->id_lista_precio);
+                $lp->__SET('id_kermesse', $r->id_kermesse);
+                $lp->__SET('nombre', $r->nombre);
+                $lp->__SET('descripcion', $r->descripcion);
 
             $this->myCon = parent::desconectar();
-            return $cg;
+            return $lp;
 
 
         }
 
-        catch (Exception $cg)
+        catch (Exception $lp)
         {
-            die($cg->getMessage());
+            die($lp->getMessage());
         }
     }
 }
