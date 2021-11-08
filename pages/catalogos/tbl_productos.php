@@ -875,19 +875,15 @@ if(isset($varMsj))
                   <thead>
 
                   <tr>
-                    <th>Id gasto</th>
-                    <th>Id kermesse</th>
-                    <th>Id categoria</th>
-                    <th>Fecha del gasto</th>
-                    <th>Concepto</th>
-                    <th>Monto</th>
-                    <th>Usuario de creacion</th>
-                    <th>Fecha creacion</th>
-                    <th>Uduario de modificacion</th>
-                    <th>Fecha modificacion</th>
-                    <th>Usuario de eliminacion</th>
-                    <th>Fecha eliminacion</th>
-                    <th>Estado</th>
+                    <th>Id Producto</th>
+                    <th>Id Comunidad</th>
+                    <th>Id Categoria Producto</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Cantidad</th>
+                    <th>precio sugerido</th>
+                    
+                  
                   </tr>
 
                   </thead>
@@ -899,27 +895,23 @@ if(isset($varMsj))
                   ?>
 
                   <tr>
-                    <td><?php echo $r->__GET('id_registro_gastos');  ?></td>
-                    <td><?php echo $r->__GET('idKermesse');  ?></td>
-                    <td><?php echo $r->__GET('idCatGastos');  ?></td>
-                    <td><?php echo $r->__GET('fechaGasto');  ?></td>
-                    <td><?php echo $r->__GET('concepto');  ?></td>
-                    <td><?php echo $r->__GET('monto');  ?></td>
-                    <td><?php echo $r->__GET('usuario_creacion');  ?></td>
-                    <td><?php echo $r->__GET('fecha_creacion');  ?></td>
-                    <td><?php echo $r->__GET('usuario_modificacion');  ?></td>
-                    <td><?php echo $r->__GET('fecha_modificacion');  ?></td>
-                    <td><?php echo $r->__GET('usuario_eliminacion');  ?></td>
-                    <td><?php echo $r->__GET('fecha_eliminacion');  ?></td>
-                    <td><?php echo $r->__GET('estado');  ?></td>
-                    <td> <a href="frm_edit_gastos.php?editG=<?php echo $r->__GET('id_registro_gastos');?>" target="blank">
-                    <i class="far fa-edit" title="Editar Gasto"></i></a>
+                    <td><?php echo $r->__GET('id_producto');  ?></td>
+                    <td><?php echo $r->__GET('id_comunidad');  ?></td>
+                    <td><?php echo $r->__GET('id_cat_producto');  ?></td>
+                    <td><?php echo $r->__GET('nombre');  ?></td>
+                    <td><?php echo $r->__GET('descripcion');  ?></td>
+                    <td><?php echo $r->__GET('cantidad');  ?></td>
+                    <td><?php echo $r->__GET('preciov_sugerido');  ?></td>
+               
+                   
+                    <td> <a href="frm_edit_productos.php?editP=<?php echo $r->__GET('id_producto');?>" target="blank">
+                    <i class="far fa-edit" title="Editar Producto"></i></a>
                     &nbsp;&nbsp;
-                    <a href="frm_view_gastos.php?viewG=<?php echo $r->__GET('id_registro_gastos');?>" target="blank">
-                    <i class="far fa-eye" title="Ver Gasto"></i></a>
+                    <a href="frm_view_productos.php?viewP=<?php echo $r->__GET('id_producto');?>" target="blank">
+                    <i class="far fa-eye" title="Ver Producto"></i></a>
                     &nbsp;&nbsp;
                     <a href="#" target="_blank">
-                      <i class="far fa-trash-alt" title="Eliminar Pais"></i>
+                      <i class="far fa-trash-alt" title="Eliminar Producto"></i>
                     </a>
                     </td>
 

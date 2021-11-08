@@ -9,12 +9,15 @@ include '../../entidades/categoria_productos.php';
 
 
 $dtcp = new Dt_categoria_productos();
+$cap = new CategoriaP();
 
-$varMsj = 0;
-if(isset($varMsj))
+$varIdCategoriaG = 0;
+if(isset($varIdCategoriaP))
 {
-    $varMsj = $_GET['msj'];
+    $varIdCategoriaG = $_GET['viewCyP'];
 }
+$cap = $dtcp-> obtenerCategoriaP ($varIdCategoriaP);
+
 ?>
 
 
@@ -844,12 +847,12 @@ if(isset($varMsj))
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Nueva Categoria</h1>
+            <h1>Categoria de Producto</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item active">Registrar Categoria</li>
+              <li class="breadcrumb-item active">Ver Categoria</li>
             </ol>
           </div>
         </div>
@@ -865,27 +868,38 @@ if(isset($varMsj))
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Registrar categoria de productos</h3>
+                <h3 class="card-title">Ver categoria de productos</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form>
                 <div class="card-body">
+
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="number" class="form-control" id="id_categoria_producto" name="id_categoria_producto" disabled>
+                  </div>
                   <div class="form-group">
                     <label>Nombre Categoria</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre"placeholder="Digite el Nombre">
+                    <input type="text" class="form-control" id="nombre" name="nombre" disabled>
                   </div>
                   <div class="form-group">
                     <label>Descipcion</label>
-                    <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion">
+                    <input type="text" class="form-control" id="descripcion" name="descripcion"  disabled>
+                  </div>
+                  <div class="form-group">
+                    <label>Estado</label>
+                    <input type="number" class="form-control" id="estado" name="estado"disabled>
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
                   
-                  <button type="submit" class="btn btn-primary">Guardar</button>
-                  <button type="reset" class="btn btn-danger">Cancelar</button>
+                  <!--<button type="submit" class="btn btn-primary">Guardar</button>
+                      <button type="reset" class="btn btn-danger">Cancelar</button> -->
+                  <a href="tbl_categoria_gastos.php"><i class="far fa fa-undo-alt"></i>Regresar</a>
+                
                 </div>
               </form>
             </div>
@@ -922,10 +936,27 @@ if(isset($varMsj))
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
+
 <script>
 $(function () {
   bsCustomFileInput.init();
 });
+</script>
+<script>
+function setCategoriasg(){
+
+  $("#id_categoria_producto").val("<?php echo $cat-> __GET('id_categoria_producto')?>");
+$("#nombre").val("<?php echo $cat-> __GET('nombre')?>");
+$("#descripcion").val("<?php echo $cat-> __GET('descripcion')?>");
+$("#estado").val("<?php echo $cat-> __GET('estado')?>");
+
+}
+
+$(document).ready(function()
+{
+  setCategoriasg();
+});
+
 </script>
 </body>
 </html>

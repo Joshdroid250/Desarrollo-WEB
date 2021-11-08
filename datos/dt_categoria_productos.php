@@ -2,7 +2,7 @@
 
 include_once("conexion.php");
 
-class Dt_categoria_gastos extends Conexion{
+class Dt_categoria_productos extends Conexion{
 
   private $myCon;
 
@@ -20,7 +20,7 @@ class Dt_categoria_gastos extends Conexion{
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ)as $r)
             {
-                $cp = new Categoriag();
+                $cp = new CategoriaP();
 
                 $cp->__SET('id_categoria_producto', $r->id_categoria_producto);
                 $cp->__SET('nombre', $r->nombre);
@@ -41,7 +41,7 @@ class Dt_categoria_gastos extends Conexion{
     public function obtenerCategoriaP($id){
         try{
             $this->myCon = parent::conectar();
-            $querySQL = "SELECT * FROM dbkermesse.tbl_categoria_gastos WHERE id_categoria_gastos = ?";
+            $querySQL = "SELECT * FROM dbkermesse.tbl_categoria_producto WHERE id_categoria_producto = ?";
             $stm = $this->myCon->prepare($querySQL);
             $stm->execute(array($id));
 
@@ -59,9 +59,9 @@ class Dt_categoria_gastos extends Conexion{
 
         }
 
-        catch (Exception $cg)
+        catch (Exception $cp)
         {
-            die($cg->getMessage());
+            die($cp->getMessage());
         }
     }
 }

@@ -4,17 +4,21 @@
 
 error_reporting(0);
 
+include '../../datos/dt_productos.php';
+include '../../entidades/productos.php';
 include '../../datos/dt_categoria_productos.php';
 include '../../entidades/categoria_productos.php';
 
-
+$dtp = new Dt_productos();
 $dtcp = new Dt_categoria_productos();
+$pto = new Productos();
 
-$varMsj = 0;
-if(isset($varMsj))
+$varIdP = 0;
+if(isset($varIdG))
 {
-    $varMsj = $_GET['msj'];
+    $varIdP = $_GET['viewP'];
 }
+$pto = $dtp-> obtenerProducto ($varIdP);
 ?>
 
 
@@ -844,12 +848,12 @@ if(isset($varMsj))
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Nueva Categoria</h1>
+            <h1>Productos</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item active">Registrar Categoria</li>
+              <li class="breadcrumb-item active">Productos</li>
             </ol>
           </div>
         </div>
@@ -865,33 +869,68 @@ if(isset($varMsj))
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Registrar categoria de productos</h3>
+                <h3 class="card-title">Ver Productos</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form>
                 <div class="card-body">
-                  <div class="form-group">
-                    <label>Nombre Categoria</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre"placeholder="Digite el Nombre">
+
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" class="form-control" id="id_registro_gastos" name = "id_registro_gastos" disabled>
                   </div>
                   <div class="form-group">
-                    <label>Descipcion</label>
-                    <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion">
+                    <label>Fecha Gasto</label>
+                    <input type="text" class="form-control" id="nombre" name = "nombre"placeholder="Nombre" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label>Concepto</label>
+                    <input type="text" class="form-control" id="descripcion" name = "descripcion"placeholder="Descripcion"disabled>
+                  </div>
+                  <div class="form-group">
+                    <label>Monto</label>
+                    <input type="text" class="form-control" id="cantidad" placeholder="Cantidad"disabled>
+                  </div>
+                  <div class="form-group">
+                    <label>Precio Sugerido</label>
+                    <input type="number" class="form-control" id="preciov_sugerido" placeholder="Precio"disabled>
+                  </div>
+                  <div class="form-group">
+                    <label>Estado</label>
+                    <input type="number" class="form-control" id="estado" placeholder="Estado"disabled>
+                  </div>
+                  <div class="form-group">
+                    <label>Categoria de producto</label>
+                    <select name="nombre_categoria" id="id_categoria_gastos" disabled>
+                      <option value="">Productos</option>
+                     
+                      <?php
+                  foreach($dtcp -> listacproductos() as $r):
+                  ?>
+
+                  <tr>
+                    <option value="<?php echo $r->__GET('id_categoria_producto');  ?>"><?php echo $r->__GET('nombre');  ?></option>
+                 
+                
+                  </tr>
+                  <?php
+                  endforeach;
+                  ?>
+
+
+                    </select>
                   </div>
                 </div>
+                  
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  
-                  <button type="submit" class="btn btn-primary">Guardar</button>
-                  <button type="reset" class="btn btn-danger">Cancelar</button>
+                <a href="tbl_gastos.php"><i class="far fa fa-undo-alt"></i>Regresar</a>
                 </div>
               </form>
             </div>
             <!-- /.card -->
-
-            
     </section>
     <!-- /.content -->
   </div>
@@ -926,6 +965,28 @@ if(isset($varMsj))
 $(function () {
   bsCustomFileInput.init();
 });
+
 </script>
+
+<script>
+function setp(){
+
+$("#id_producto").val("<?php echo $pto-> __GET('id_producto')?>");
+$("#id_comunidad").val("<?php echo $pto-> __GET('nombre')?>");
+$("#id_categoria_producto").val("<?php echo $pto-> __GET('nombre')?>");
+$("#nombre").val("<?php echo $pto-> __GET('nombre')?>");
+$("#descripcion").val("<?php echo $pto-> __GET('descripcion')?>");
+$("#cantidad").val("<?php echo $pto-> __GET('cantidad')?>");
+$("#preciov_sugerido").val("<?php echo $pto-> __GET('preciov_sugerido')?>");
+$("#id_categoria_gastos").val("<?php echo $pto-> __GET('nombre_categoria')?>");
+
+}
+
+$(document).ready(function()
+{
+  setp();
+});
+</script>
+
 </body>
 </html>

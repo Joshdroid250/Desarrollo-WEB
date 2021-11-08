@@ -16,7 +16,7 @@ $gts = new Gastos();
 $varIdG = 0;
 if(isset($varIdG))
 {
-    $varIdG = $_GET['editG'];
+    $varIdG = $_GET['viewG'];
 }
 $gts = $dtg->obtenerGasto($varIdG);
 ?>
@@ -869,12 +869,18 @@ $gts = $dtg->obtenerGasto($varIdG);
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Editar Gasto</h3>
+                <h3 class="card-title">Ver Gasto</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form>
                 <div class="card-body">
+
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="number" class="form-control" id="id_registro_gastos" name = "id_registro_gastos"p disabled>
+                  </div>
+
                   <div class="form-group">
                     <label>Fecha Gasto</label>
                     <input type="date" class="form-control" id="fechaGasto" name = "fechaGasto"placeholder="Ingrese la fecha" disabled>
@@ -973,7 +979,7 @@ $(function () {
 
 <script>
 function setg(){
-
+  $("#id_registro_gastos").val("<?php echo $cat-> __GET('id_registro_gastos')?>");
 $("#fechaGasto").val("<?php echo $cat-> __GET('fechaGasto')?>");
 $("#concepto").val("<?php echo $cat-> __GET('concepto')?>");
 $("#monto").val("<?php echo $cat-> __GET('monto')?>");

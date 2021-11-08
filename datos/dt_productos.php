@@ -2,7 +2,7 @@
 
 include_once("conexion.php");
 
-class Dt_categoria_gastos extends Conexion{
+class Dt_productos extends Conexion{
 
   private $myCon;
 
@@ -20,7 +20,7 @@ class Dt_categoria_gastos extends Conexion{
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ)as $r)
             {
-                $prod = new Categoriag();
+                $prod = new Productos();
 
                 $prod->__SET('id_producto', $r->id_producto);
                 $prod->__SET('id_comunidad', $r->id_comunidad);
@@ -50,7 +50,7 @@ class Dt_categoria_gastos extends Conexion{
             $stm->execute(array($id));
 
             $r=$stm->fetch(PDO::FETCH_OBJ);
-            $prod = new Categoriag();
+            $prod = new Productos();
 
             $prod->__SET('id_producto', $r->id_producto);
                 $prod->__SET('id_comunidad', $r->id_comunidad);
@@ -67,9 +67,9 @@ class Dt_categoria_gastos extends Conexion{
 
         }
 
-        catch (Exception $cg)
+        catch (Exception $prod)
         {
-            die($cg->getMessage());
+            die($prod->getMessage());
         }
     }
 }

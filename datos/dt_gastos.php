@@ -19,7 +19,7 @@ class Dt_gastos extends Conexion{
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ)as $r)
             {
-                $gt = new Categoriag();
+                $gt = new Gastos();
 
                 $gt->__SET('id_registro_gastos', $r->id_registro_gastos);
                 $gt->__SET('idKermesse', $r->idKermesse);
@@ -45,7 +45,7 @@ class Dt_gastos extends Conexion{
             die($e->getMessage());
         }
     }
-    public function obtenerGasto($id){
+    public function obtenergasto($id){
         try{
             $this->myCon = parent::conectar();
             $querySQL = "SELECT * FROM dbkermesse.tbl_gastos WHERE id_registro_gastos = ?";
@@ -75,9 +75,9 @@ class Dt_gastos extends Conexion{
 
         }
 
-        catch (Exception $cg)
+        catch (Exception $gt)
         {
-            die($cg->getMessage());
+            die($gt->getMessage());
         }
     }
 }

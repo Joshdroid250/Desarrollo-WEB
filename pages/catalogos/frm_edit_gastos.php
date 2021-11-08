@@ -16,7 +16,7 @@ $gts = new Gastos();
 $varIdG = 0;
 if(isset($varIdG))
 {
-    $varIdG = $_GET['viewG'];
+    $varIdG = $_GET['editG'];
 }
 $gts = $dtg->obtenerGasto($varIdG);
 ?>
@@ -975,14 +975,14 @@ $(function () {
 <script>
 function setg(){
 
-$("#fechaGasto").val("<?php echo $cat-> __GET('fechaGasto')?>");
-$("#concepto").val("<?php echo $cat-> __GET('concepto')?>");
-$("#monto").val("<?php echo $cat-> __GET('monto')?>");
-$("#fecha_creacion").val("<?php echo $cat-> __GET('fecha_creacion')?>");
-$("#fecha_modificacion").val("<?php echo $cat-> __GET('fecha_modificacion')?>");
-$("#fecha_eliminacion").val("<?php echo $cat-> __GET('fecha_eliminacion')?>");
-$("#estado").val("<?php echo $cat-> __GET('estado')?>");
-$("#id_categoria_gastos").val("<?php echo $cat-> __GET('nombre_categoria')?>");
+$("#fechaGasto").val("<?php echo $gts-> __GET('fechaGasto')?>");
+$("#concepto").val("<?php echo $gts-> __GET('concepto')?>");
+$("#monto").val("<?php echo $gts-> __GET('monto')?>");
+$("#fecha_creacion").val("<?php echo $gts-> __GET('fecha_creacion')?>");
+$("#fecha_modificacion").val("<?php echo $gts-> __GET('fecha_modificacion')?>");
+$("#fecha_eliminacion").val("<?php echo $gts-> __GET('fecha_eliminacion')?>");
+$("#estado").val("<?php echo $gts-> __GET('estado')?>");
+$("#id_categoria_gastos").val("<?php echo $gts-> __GET('nombre_categoria')?>");
 
 }
 

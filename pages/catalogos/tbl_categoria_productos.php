@@ -3,12 +3,12 @@
 
 error_reporting(0);
 
-include '../../datos/dt_categoria_productos.php.php';
+include '../../datos/dt_categoria_productos.php';
 include '../../entidades/categoria_productos.php';
 
 
 
-$dtcg = new Dt_categoria_gastos();
+$dtcp = new Dt_categoria_productos();
 
 $varMsj = 0;
 if(isset($varMsj))
@@ -23,7 +23,7 @@ if(isset($varMsj))
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>dbkermesse | Tabla Categoria Productos</title>
+  <title>dbkermesse | Tabla Categoria Gastos</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -871,7 +871,7 @@ if(isset($varMsj))
                 </div>
                 <div class="card-body">
                     <div class="form-group col-md-12" style="text-align:right">
-                    <a href="frm_categoria_gastos.php" title="Nueva Categoria de Gasto" target="blank"><i class="far fa-plus-square"></i>Nueva Categoria</a>
+                    <a href="frm_categoria_productos.php" title="Nueva Categoria de Producto" target="blank"><i class="far fa-plus-square"></i>Nueva Categoria</a>
                     </div>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
@@ -880,7 +880,7 @@ if(isset($varMsj))
                     <th>ID</th>
                     <th>Nombre Categoria</th>
                     <th>Descripcion</th>
-                    <th>Estado</th>
+                   
                   </tr>
 
                   </thead>
@@ -892,18 +892,18 @@ if(isset($varMsj))
                   ?>
 
                   <tr>
-                    <td><?php echo $r->__GET('id_categoria_gastos');  ?></td>
-                    <td><?php echo $r->__GET('nombre_categoria');  ?></td>
+                    <td><?php echo $r->__GET('id_categoria_producto');  ?></td>
+                    <td><?php echo $r->__GET('nombre');  ?></td>
                     <td><?php echo $r->__GET('descripcion');  ?></td>
-                    <td><?php echo $r->__GET('estado');  ?></td>
-                    <td> <a href="frm_edit_categoria_gastos.php?editCg=<?php echo $r->__GET('id_categoria_gastos');?>" target="blank">
-                    <i class="far fa-edit" title="Editar Categoria Gasto"></i></a>
+                  
+                    <td> <a href="frm_edit_categoria_productos.php?editCp=<?php echo $r->__GET('id_categoria_producto');?>" target="blank">
+                    <i class="far fa-edit" title="Editar Categoria Producto"></i></a>
                     &nbsp;&nbsp;
-                    <a href="frm_view_categoria_gastos.php?viewCyG=<?php echo $r->__GET('id_categoria_gastos');?>" target="blank">
+                    <a href="frm_view_categoria_gastos.php?viewCyP=<?php echo $r->__GET('id_categoria_gastos');?>" target="blank">
                     <i class="far fa-eye" title="Ver Gasto"></i></a>
                     &nbsp;&nbsp;
                     <a href="#" target="_blank">
-                      <i class="far fa-trash-alt" title="Eliminar Pais"></i>
+                      <i class="far fa-trash-alt" title="Eliminar Categoria"></i>
                     </a>
                     </td>
                   </tr>
@@ -920,7 +920,7 @@ if(isset($varMsj))
                   <th>ID</th>
                     <th>Nombre Categoria</th>
                     <th>Descripcion</th>
-                    <th>Estado</th>
+                   
                   </tr>
 
                   </tfoot>
