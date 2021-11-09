@@ -448,6 +448,30 @@ $pa = $dtkm->ObtenerListaKermesse($varIdKermesse);
                 </a>
               </li>
               <li class="nav-item">
+                <a href="frm_parroquia.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Parroquia</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="tbl_listaPrecioDet.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Detalle precio</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="tbl_listaPrecio.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lista de precio</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="tbl_kermesse.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kermesse</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../tables/data.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>DataTables</p>
