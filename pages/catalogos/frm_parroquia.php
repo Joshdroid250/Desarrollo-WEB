@@ -883,10 +883,6 @@ if(isset($varMsj))
                     <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Digite telefono">
                   </div>
                   <div class="form-group">
-                    <label>telefono</label>
-                    <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Digite telefono">
-                  </div>
-                  <div class="form-group">
                     <label>Parroco</label>
                     <input type="text" class="form-control" id="parroco" name="parroco" placeholder="Digite nombre del parroco">
                   </div>

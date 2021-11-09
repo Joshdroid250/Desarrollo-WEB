@@ -1,44 +1,39 @@
 <?php
 
 
-error_reporting(0);
+/*error_reporting(0);
 
-include '../../datos/dt_kermesse.php';
-include '../../entidades/kermesse.php';
+include '../../datos/dt_categoria_gastos.php';
+include '../../entidades/categoria_gastos.php';
 
 
+$dtcg = new Dt_categoria_gastos();
+$cat = new Categoriag();
 
-$dtcg = new dt_kermesse();
-
-$varMsj = 0;
-if(isset($varMsj))
+$varIdCategoriaG = 0;
+if(isset($varIdCategoriaG))
 {
-    $varMsj = $_GET['msj'];
+    $varIdCategoriaG = $_GET['viewCyG'];
 }
-?>
+$cat = $dtcg->obtenerCategoriaG($varIdCategoriaG);*/
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>dbkermesse | Tabla kermesse</title>
+  <title>AdminLTE 3 | General Form Elements</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../../plugins/DataTables1.11.2-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/DataTables1.11.2-/Responsive-2.2.9/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/DataTables1.11.2/Buttons-2.0.0/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
-
 <body class="hold-transition sidebar-mini">
-
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -397,8 +392,8 @@ if(isset($varMsj))
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Forms
@@ -407,7 +402,7 @@ if(isset($varMsj))
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../forms/general.html" class="nav-link">
+                <a href="../forms/general.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>General Elements</p>
                 </a>
@@ -432,8 +427,8 @@ if(isset($varMsj))
               </li>
             </ul>
           </li>
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Tables
@@ -448,7 +443,7 @@ if(isset($varMsj))
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../tables/data.html" class="nav-link active">
+                <a href="../tables/data.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>DataTables</p>
                 </a>
@@ -850,116 +845,65 @@ if(isset($varMsj))
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DataTables</h1>
+            <h1> Item Lista precioe</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item active">Datos Kermesse</li>
+              <li class="breadcrumb-item active">Lista precio</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
 
-
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-12">
-            <div class="card">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
               <div class="card-header">
-              <h3 class="card-title">Kermesse</h3>
-                </div>
+                <h3 class="card-title">Ver Lista precio</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form>
                 <div class="card-body">
-                    <div class="form-group col-md-12" style="text-align:right">
-                    <a href="frm_kermesse.php" title="Nuevo dato kermesse" target="blank"><i class="far fa-plus-square"></i>Nueva kermesse</a>
-                    </div>
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-
-                  <tr>
-                    <th>ID</th>
-                    <th>ID Parroquia</th>
-                    <th>Nombre</th>
-                    <th>Fecha de inicio</th>
-                    <th>Fecha Final</th>
-                    <th>Descripcion</th>
-                    <th>Estado</th>
-                    <th>Creacion de usuario</th>
-                    <th>Fecha de creacion</th>
-                    <th>Modificacion de usuario</th>
-                    <th>Fecha de modificacion</th>
-                    <th>Eliminacion de usuario</th>
-                    <th>Fecha de eliminacion</th>
-                  </tr>
-
-                  </thead>
-
-                  <tbody>
-
-                  <?php
-                  foreach($dtcg -> listaKermesse() as $r):
-                  ?>
-
-                  <tr>
-                    <td><?php echo $r->__GET('id_kermesse');  ?></td>
-                    <td><?php echo $r->__GET('idParroquia');  ?></td>
-                    <td><?php echo $r->__GET('nombre');  ?></td>
-                    <td><?php echo $r->__GET('fInicio');  ?></td>
-                    <td><?php echo $r->__GET('fFinal');  ?></td>
-                    <td><?php echo $r->__GET('descripcion');  ?></td>
-                    <td><?php echo $r->__GET('estado');  ?></td>
-                    <td><?php echo $r->__GET('usuario_creacion');  ?></td>
-                    <td><?php echo $r->__GET('fecha_creacion');  ?></td>
-                    <td><?php echo $r->__GET('usuario_modificacion');  ?></td>
-                    <td><?php echo $r->__GET('fecha_modificacion');  ?></td>
-                    <td><?php echo $r->__GET('usuario_eliminacion');  ?></td>
-                    <td><?php echo $r->__GET('fecha_eliminacion');  ?></td>
-                    <td> <a href="frm_edit_kermesse.php?editCg=<?php echo $r->__GET('id_kermesse');?>" target="blank">
-                    <i class="far fa-edit" title="Editar Kermesse"></i></a>
-                    &nbsp;&nbsp;
-                    <a href="frm_view_kermesse.php?viewCyG=<?php echo $r->__GET('id_kermesse');?>" target="blank">
-                    <i class="far fa-eye" title="Ver kermesse"></i></a>
-                    &nbsp;&nbsp;
-                    <a href="#" target="_blank">
-                      <i class="far fa-trash-alt" title="Eliminar"></i>
-                    </a>
-                    </td>
-                  </tr>
-                  <?php
-                  endforeach;
-                  ?>
-
-
-                  </tbody>
-
-                  <tfoot>
-
-                  <tr>
-                  <th>ID</th>
-                    <th>ID  de Parroquia</th>
-                    <th>Nombre</th>
-                    <th>Fecha de inicio</th>
-                    <th>Fecha Final</th>
-                    <th>Descripcion</th>
-                    <th>Estado</th>
-                    <th>Creacion de usuario</th>
-                    <th>Fecha de creacion</th>
-                    <th>Modificacion de usuario</th>
-                    <th>Fecha de modificacion</th>
-                    <th>Eliminacion de usuario</th>
-                    <th>Fecha de eliminacion</th>
-                  </tr>
-
-                  </tfoot>
-                  </table>
+                <div class="form-group">
+                    <label>ID Lista precio</label>
+                    <input type="number" class="form-control" id="id_lista_precio" name="id_lista_precio"placeholder="Digite id de lista precio">
+                  </div>
+                  <div class="form-group">
+                    <label>ID PRODUCTO</label>
+                    <input type="number" class="form-control" id="id_producto" name="id_producto" placeholder="Digite ID de producto">
+                  </div>
+                  <div class="form-group">
+                    <label>Precio de venta</label>
+                    <input type="number" class="form-control" id="precio_venta" name="precio_venta" placeholder="Digite el precio de venta">
+                  </div>
                 </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  
+                  <!--<button type="submit" class="btn btn-primary">Guardar</button>
+                      <button type="reset" class="btn btn-danger">Cancelar</button> -->
+                  <a href="tbl_listaPrecioDet.php"><i class="far fa fa-undo-alt"></i>Regresar</a>
+                
+                </div>
+              </form>
             </div>
-        </div>
-    </div>
- 
+            <!-- /.card -->
 
-
-<footer class="main-footer">
+            
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.1.0-rc
     </div>
@@ -978,48 +922,33 @@ if(isset($varMsj))
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-
-
-<script src="../../plugins/DataTables1.11.2/datatables.min.css"></script>
-<script src="../../plugins/DataTables1.11.2/Responsive-2.2.9/js/responsive.bootstrap4.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/Responsive-2.2.9/js/dataTables.responsive.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/Responsive-2.2.9/js/responsive.dataTables.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/dataTables.buttons.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.bootstrap4.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/JSZip-2.5.0/jszip.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/pdfmake-0.1.36/pdfmake.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/pdfmake-0.1.36/vfs_fonts.js"></script>
-<script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.html5.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.print.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.colVis.min.js"></script>
-
-
-
+<!-- bs-custom-file-input -->
+<script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
+
 <script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
+$(function () {
+  bsCustomFileInput.init();
+});
+</script>
+<script>
+function setCategoriasg(){
 
+$("#nombre_categoria").val("<?php echo $cat-> __GET('nombre_categoria')?>");
+$("#descripcion").val("<?php echo $cat-> __GET('descripcion')?>");
+$("#estado").val("<?php echo $cat-> __GET('estado')?>");
 
-  </script>
+}
+
+$(document).ready(function()
+{
+  setCategoriasg();
+});
+
+</script>
 </body>
 </html>

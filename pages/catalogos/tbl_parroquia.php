@@ -871,7 +871,7 @@ if(isset($varMsj))
                 </div>
                 <div class="card-body">
                     <div class="form-group col-md-12" style="text-align:right">
-                    <a href="frm_categoria_gastos.php" title="Nuevo dato Parroquia" target="blank"><i class="far fa-plus-square"></i>Nueva kermesse</a>
+                    <a href="frm_parroquia.php" title="Nuevo dato Parroquia" target="blank"><i class="far fa-plus-square"></i>Nueva parroquia</a>
                     </div>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
@@ -902,10 +902,10 @@ if(isset($varMsj))
                     <td><?php echo $r->__GET('parroco');  ?></td>
                     <td><?php echo $r->__GET('logo');  ?></td>
                     <td><?php echo $r->__GET('sitio_web');  ?></td>
-                    <td> <a href="frm_edit_categoria_gastos.php?editCg=<?php echo $r->__GET('id_categoria_gastos');?>" target="blank">
+                    <td> <a href="frm_edit_parroquia.php?editCg=<?php echo $r->__GET('idParroquia');?>" target="blank">
                     <i class="far fa-edit" title="Editar lista precio"></i></a>
                     &nbsp;&nbsp;
-                    <a href="frm_view_categoria_gastos.php?viewCyG=<?php echo $r->__GET('id_categoria_gastos');?>" target="blank">
+                    <a href="frm_view_parroquia.php?viewCyG=<?php echo $r->__GET('idParroquia');?>" target="blank">
                     <i class="far fa-eye" title="Ver parroquia"></i></a>
                     &nbsp;&nbsp;
                     <a href="#" target="_blank">

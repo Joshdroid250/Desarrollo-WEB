@@ -871,7 +871,7 @@ if(isset($varMsj))
                 </div>
                 <div class="card-body">
                     <div class="form-group col-md-12" style="text-align:right">
-                    <a href="frm_categoria_gastos.php" title="Nueva Categoria de Gasto" target="blank"><i class="far fa-plus-square"></i>Nueva Categoria</a>
+                    <a href="frm_listaPrecioDet.php" title="Nueva Lista precio" target="blank"><i class="far fa-plus-square"></i>Nuevo lista precio det</a>
                     </div>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
@@ -896,10 +896,10 @@ if(isset($varMsj))
                     <td><?php echo $r->__GET('id_lista_precio');  ?></td>
                     <td><?php echo $r->__GET('id_producto');  ?></td>
                     <td><?php echo $r->__GET('precio_venta');  ?></td>
-                    <td> <a href="frm_edit_categoria_gastos.php?editCg=<?php echo $r->__GET('id_categoria_gastos');?>" target="blank">
+                    <td> <a href="frm_edit_listaPrecioDet.php?editp=<?php echo $r->__GET('id_listaprecio_det');?>" target="blank">
                     <i class="far fa-edit" title="Editar lista precio"></i></a>
                     &nbsp;&nbsp;
-                    <a href="frm_view_categoria_gastos.php?viewCyG=<?php echo $r->__GET('id_categoria_gastos');?>" target="blank">
+                    <a href="frm_view_lista.php?viewCyG=<?php echo $r->__GET('id_listaprecio_det');?>" target="blank">
                     <i class="far fa-eye" title="Ver precio"></i></a>
                     &nbsp;&nbsp;
                     <a href="#" target="_blank">
