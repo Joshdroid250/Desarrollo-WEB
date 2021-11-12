@@ -432,27 +432,102 @@ if(isset($varMsj))
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Tables
+                Control
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../tables/simple.html" class="nav-link">
+                <a href="#" class="nav-link">
+                  <i class=""></i>
+                  <p>
+                    Productos
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="tbl_productos.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
+                  <p>Productos</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="tbl_categoria_productos.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Categorias</p>
+                </a>
+              </li>
+                </ul>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class=""></i>
+                  <p>
+                    Gastos
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="tbl_gastos.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Gastos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../tables/data.html" class="nav-link">
+                <a href="tbl_categoria_gastos.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
+                  <p>Categorias</p>
+                </a>
+              </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class=""></i>
+                  <p>
+                    Kermesse
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="tbl_parroquia.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Parroquia</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="tbl_kermesse.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kermesse</p>
+                  </a>
+                </li>
+                </a>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class=""></i>
+                <p>
+                  Lista precio
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="tbl_listaPrecioDet.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Detalle precio</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../tables/jsgrid.html" class="nav-link">
+                <a href="tbl_listaPrecio.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>jsGrid</p>
+                  <p>Lista de precio</p>
                 </a>
               </li>
             </ul>

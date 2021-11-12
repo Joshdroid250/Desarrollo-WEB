@@ -20,7 +20,6 @@ if(isset($varIdKermesse))
     $varIdKermesse = $_GET['editKm'];
 }
 $pa = $dtkm->ObtenerListaKermesse($varIdKermesse);
-
 ?>
 
 
@@ -436,23 +435,92 @@ $pa = $dtkm->ObtenerListaKermesse($varIdKermesse);
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Tables
+                Control
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../tables/simple.html" class="nav-link">
+                <a href="#" class="nav-link">
+                  <i class=""></i>
+                  <p>
+                    Productos
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="tbl_productos.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
+                  <p>Productos</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="tbl_categoria_productos.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Categorias</p>
+                </a>
+              </li>
+                </ul>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class=""></i>
+                  <p>
+                    Gastos
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="tbl_gastos.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Gastos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="frm_parroquia.php" class="nav-link">
+                <a href="tbl_categoria_gastos.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Categorias</p>
+                </a>
+              </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class=""></i>
+                  <p>
+                    Kermesse
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="tbl_parroquia.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Parroquia</p>
                 </a>
-              </li>
+                </li>
+                <li class="nav-item">
+                <a href="tbl_kermesse.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kermesse</p>
+                  </a>
+                </li>
+                </a>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class=""></i>
+                <p>
+                  Lista precio
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="tbl_listaPrecioDet.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -463,24 +531,6 @@ $pa = $dtkm->ObtenerListaKermesse($varIdKermesse);
                 <a href="tbl_listaPrecio.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lista de precio</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="tbl_kermesse.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kermesse</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../tables/jsgrid.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>jsGrid</p>
                 </a>
               </li>
             </ul>
@@ -901,12 +951,13 @@ $pa = $dtkm->ObtenerListaKermesse($varIdKermesse);
               <!-- form start -->
               <form>
               <div class="card-body">
+              <div class="form-group">
+                      <label>Seleccione parroquia</label>
+                      <select id="IdParroquia" name="idParroquia" class="form-control">
+                        <option value="">Seleccione</option>
+                      </div>
                   <div class="form-group">
-                    <label>ID Parroquia</label>
-                    <input type="number" class="form-control" id="id_parroquia" name="id_parroquia"placeholder="Digite numero de parroquia">
-                  </div>
-                  <div class="form-group">
-                    <label>nombre</label>
+                    <label>Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
                   </div>
                   <div class="form-group">
