@@ -9,7 +9,7 @@ class dt_kermesse extends Conexion
         {
            $this->myCon = parent::conectar();
             $result = array();
-            $querySQL = "SELECT * FROM dbkermesse.tbl_kermesse;";
+            $querySQL = "SELECT * FROM dbkermesse.vw_kermesse_parroquia;";
 
             $stm = $this->myCon->prepare($querySQL);
             $stm->execute();
@@ -18,19 +18,20 @@ class dt_kermesse extends Conexion
             {
                 $kr = new kermesse();
 
-                $kr->__SET('id_kermesse', $r->id_kermesse);
-                $kr->__SET('idParroquia', $r->idParroquia);
-                $kr->__SET('nombre', $r->nombre);
-                $kr->__SET('fInicio', $r->fInicio);
-                $kr->__SET('fFinal', $r->fFinal);
-                $kr->__SET('descripcion', $r->descripcion);
-                $kr->__SET('estado', $r->estado);
-                $kr->__SET('usuario_creacion', $r->usuario_creacion);
-                $kr->__SET('fecha_creacion', $r->fecha_creacion);
-                $kr->__SET('usuario_modificacion', $r->usuario_modificacion);
-                $kr->__SET('fecha_modificacion', $r->fecha_modificacion);
-                $kr->__SET('usuario_eliminacion', $r->usuario_eliminacion);
-                $kr->__SET('fecha_eliminacion', $r->fecha_eliminacion);
+            $kr->__SET('id_kermesse', $r->id_kermesse);
+            $kr->__SET('idParroquia', $r->idParroquia);
+            $kr->__SET('nombreParro', $r->nombreParro);
+            $kr->__SET('nombreKerme', $r->nombreKerme);
+            $kr->__SET('fInicio', $r->fInicio);
+            $kr->__SET('fFinal', $r->fFinal);
+            $kr->__SET('descripcion', $r->descripcion);
+            $kr->__SET('estado', $r->estado);
+            $kr->__SET('usuario_creacion', $r->usuario_creacion);
+            $kr->__SET('fecha_creacion', $r->fecha_creacion);
+            $kr->__SET('usuario_modificacion', $r->usuario_modificacion);
+            $kr->__SET('fecha_modificacion', $r->fecha_modificacion);
+            $kr->__SET('usuario_eliminacion', $r->usuario_eliminacion);
+            $kr->__SET('fecha_eliminacion', $r->fecha_eliminacion);
                 
                 $result[] = $kr;
             }
