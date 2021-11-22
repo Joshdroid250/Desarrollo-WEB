@@ -46,7 +46,7 @@ class dt_kermesse extends Conexion
     public function ObtenerListaKermesse($id){
         try{
             $this->myCon = parent::conectar();
-            $querySQL = "SELECT * FROM dbkermesse.tbl_kermesse WHERE id_kermesse = ?";
+            $querySQL = "SELECT * FROM dbkermesse.vw_kermesse_parroquia WHERE id_kermesse = ?";
             $stm = $this->myCon->prepare($querySQL);
             $stm->execute(array($id));
 
@@ -55,7 +55,8 @@ class dt_kermesse extends Conexion
             
             $kr->__SET('id_kermesse', $r->id_kermesse);
             $kr->__SET('idParroquia', $r->idParroquia);
-            $kr->__SET('nombre', $r->nombre);
+            $kr->__SET('nombreParro', $r->nombreParro);
+            $kr->__SET('nombreKerme', $r->nombreKerme);
             $kr->__SET('fInicio', $r->fInicio);
             $kr->__SET('fFinal', $r->fFinal);
             $kr->__SET('descripcion', $r->descripcion);

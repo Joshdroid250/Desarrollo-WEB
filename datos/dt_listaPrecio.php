@@ -37,7 +37,7 @@ class dt_listaPrecio extends Conexion
     public function ObtenerlistaPrecio($id){
         try{
             $this->myCon = parent::conectar();
-            $querySQL = "SELECT * FROM dbkermesse.tbl_lista_precio WHERE id_lista_precio = ?";
+            $querySQL = "SELECT * FROM dbkermesse.vw_listaprecio_kermesse WHERE id_lista_precio = ?";
             $stm = $this->myCon->prepare($querySQL);
             $stm->execute(array($id));
 
@@ -46,6 +46,7 @@ class dt_listaPrecio extends Conexion
             
                 $lp->__SET('id_lista_precio', $r->id_lista_precio);
                 $lp->__SET('id_kermesse', $r->id_kermesse);
+                $lp->__SET('nombreKermesse', $r->nombreKermesse);
                 $lp->__SET('nombre', $r->nombre);
                 $lp->__SET('descripcion', $r->descripcion);
 
