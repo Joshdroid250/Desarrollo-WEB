@@ -958,13 +958,6 @@ if(isset($varMsj))
                     <th>Fecha de inicio</th>
                     <th>Fecha Final</th>
                     <th>Descripcion</th>
-                    <th>Estado</th>
-                    <th>Creacion de usuario</th>
-                    <th>Fecha de creacion</th>
-                    <th>Modificacion de usuario</th>
-                    <th>Fecha de modificacion</th>
-                    <th>Eliminacion de usuario</th>
-                    <th>Fecha de eliminacion</th>
                   </tr>
 
                   </thead>
@@ -982,17 +975,10 @@ if(isset($varMsj))
                     <td><?php echo $r->__GET('fInicio');  ?></td>
                     <td><?php echo $r->__GET('fFinal');  ?></td>
                     <td><?php echo $r->__GET('descripcion');  ?></td>
-                    <td><?php echo $r->__GET('estado');  ?></td>
-                    <td><?php echo $r->__GET('usuario_creacion');  ?></td>
-                    <td><?php echo $r->__GET('fecha_creacion');  ?></td>
-                    <td><?php echo $r->__GET('usuario_modificacion');  ?></td>
-                    <td><?php echo $r->__GET('fecha_modificacion');  ?></td>
-                    <td><?php echo $r->__GET('usuario_eliminacion');  ?></td>
-                    <td><?php echo $r->__GET('fecha_eliminacion');  ?></td>
-                    <td> <a href="frm_edit_kermesse.php?editCg=<?php echo $r->__GET('id_kermesse');?>" target="blank">
+                    <td> <a href="frm_edit_kermesse.php?editK=<?php echo $r->__GET('id_kermesse');?>" target="blank">
                     <i class="far fa-edit" title="Editar Kermesse"></i></a>
                     &nbsp;&nbsp;
-                    <a href="frm_view_kermesse.php?viewCyG=<?php echo $r->__GET('id_kermesse');?>" target="blank">
+                    <a href="frm_view_kermesse.php?viewKer=<?php echo $r->__GET('id_kermesse');?>" target="blank">
                     <i class="far fa-eye" title="Ver kermesse"></i></a>
                     &nbsp;&nbsp;
                     <a href="#" target="_blank">
@@ -1016,13 +1002,6 @@ if(isset($varMsj))
                     <th>Fecha de inicio</th>
                     <th>Fecha Final</th>
                     <th>Descripcion</th>
-                    <th>Estado</th>
-                    <th>Creacion de usuario</th>
-                    <th>Fecha de creacion</th>
-                    <th>Modificacion de usuario</th>
-                    <th>Fecha de modificacion</th>
-                    <th>Eliminacion de usuario</th>
-                    <th>Fecha de eliminacion</th>
                   </tr>
 
                   </tfoot>

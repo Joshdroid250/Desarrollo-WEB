@@ -8,7 +8,7 @@ include '../../entidades/parroquia.php';
 
 
 
-$dtcg = new dt_parroquia();
+$dtParro = new Dt_parroquia();
 
 $varMsj = 0;
 if(isset($varMsj))
@@ -966,21 +966,21 @@ if(isset($varMsj))
                   <tbody>
 
                   <?php
-                  foreach($dtcg -> listaParroquia() as $r):
+                  foreach($dtParro -> listaParroquia() as $r):
                   ?>
 
                   <tr>
-                    <td><?php echo $r->__GET('idParroquia');  ?></td>
+                    <td><?php echo $r->__GET('idParroquia');?></td>
                     <td><?php echo $r->__GET('nombre');  ?></td>
                     <td><?php echo $r->__GET('direccion');  ?></td>
                     <td><?php echo $r->__GET('telefono');  ?></td>
                     <td><?php echo $r->__GET('parroco');  ?></td>
                     <td><?php echo $r->__GET('logo');  ?></td>
                     <td><?php echo $r->__GET('sitio_web');  ?></td>
-                    <td> <a href="frm_edit_parroquia.php?editCg=<?php echo $r->__GET('idParroquia');?>" target="blank">
+                    <td> <a href="frm_edit_parroquia.php?editPa=<?php echo $r->__GET('idParroquia');?>" target="blank">
                     <i class="far fa-edit" title="Editar lista precio"></i></a>
                     &nbsp;&nbsp;
-                    <a href="frm_view_parroquia.php?viewCyG=<?php echo $r->__GET('idParroquia');?>" target="blank">
+                    <a href="frm_view_parroquia.php?viewParro=<?php echo $r->__GET('idParroquia');?>" target="blank">
                     <i class="far fa-eye" title="Ver parroquia"></i></a>
                     &nbsp;&nbsp;
                     <a href="#" target="_blank">

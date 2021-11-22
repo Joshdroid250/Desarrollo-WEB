@@ -1,20 +1,20 @@
 <?php
 
-/*error_reporting(0);
+error_reporting(0);
 
 include '../../datos/dt_parroquia.php';
 include '../../entidades/parroquia.php';
 
 
 $dtpa = new dt_parroquia();
-$ca = new parroquia();
+$parr = new parroquia();
 
-$varIdParroqui = 0;
+$varIdParroquia = 0;
 if(isset($varIdParro))
 {
-    $varIdParroqui = $_GET['editPa'];
+    $varIdParroquia = $_GET['editPa'];
 }
-$ca = $dtpa->ObtenerListaParroquia($varIdParroqui);*/
+$parr = $dtpa->ObtenerListaParroquia($varIdParroquia);
 
 
 ?>
@@ -1024,10 +1024,12 @@ $(function () {
 <script>
 function setParroquia(){
 
-$("#nombre_categoria").val("<?php echo $cat-> __GET('nombre_categoria')?>");
-$("#descripcion").val("<?php echo $cat-> __GET('descripcion')?>");
-$("#estado").val("<?php echo $cat-> __GET('estado')?>");
-
+$("#nombre").val("<?php echo $parr-> __GET('nombre')?>");
+$("#direccion").val("<?php echo $parr-> __GET('direccion')?>");
+$("#telefono").val("<?php echo $parr-> __GET('telefono')?>");
+$("#parroco").val("<?php echo $parr-> __GET('parroco')?>");
+$("#logo").val("<?php echo $parr-> __GET('logo')?>");
+$("#sitio_web").val("<?php echo $parr-> __GET('sitio_web')?>");
 }
 
 $(document).ready(function()

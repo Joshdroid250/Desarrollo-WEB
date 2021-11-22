@@ -1,24 +1,23 @@
 <?php
 
 
-/*error_reporting(0);
+error_reporting(0);
 
-include '../../datos/dt_categoria_gastos.php';
-include '../../entidades/categoria_gastos.php';
+include '../../datos/dt_parroquia.php';
+include '../../entidades/parroquia.php';
 
 
-$dtcg = new Dt_categoria_gastos();
-$cat = new Categoriag();
+$dtP = new Dt_parroquia();
+$cat = new parroquia();
 
-$varIdCategoriaG = 0;
-if(isset($varIdCategoriaG))
+$varIdParroquia = 0;
+if(isset($varIdParroquia))
 {
-    $varIdCategoriaG = $_GET['viewCyG'];
+    $varIdParroquia = $_GET['viewParro'];
 }
-$cat = $dtcg->obtenerCategoriaG($varIdCategoriaG);*/
+$parr = $dtP->ObtenerListaParroquia($varIdParroquia);
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1023,17 +1022,20 @@ $(function () {
 });
 </script>
 <script>
-function setCategoriasg(){
+function setParroquia(){
 
-$("#nombre_categoria").val("<?php echo $cat-> __GET('nombre_categoria')?>");
-$("#descripcion").val("<?php echo $cat-> __GET('descripcion')?>");
-$("#estado").val("<?php echo $cat-> __GET('estado')?>");
+$("#nombre").val("<?php echo $parr-> __GET('nombre')?>");
+$("#direccion").val("<?php echo $parr-> __GET('direccion')?>");
+$("#telefono").val("<?php echo $parr-> __GET('telefono')?>");
+$("#parroco").val("<?php echo $parr-> __GET('parroco')?>");
+$("#logo").val("<?php echo $parr-> __GET('logo')?>");
+$("#sitio_web").val("<?php echo $parr-> __GET('sitio_web')?>");
 
 }
 
 $(document).ready(function()
 {
-  setCategoriasg();
+  setParroquia();
 });
 
 </script>
