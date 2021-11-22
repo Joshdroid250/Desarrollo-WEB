@@ -953,9 +953,9 @@ if(isset($varMsj))
 
                   <tr>
                     <th>ID</th>
-                    <th>Nombre Categoria</th>
+                    <th>Nombre Kermesse</th>
+                    <th>Nombre</th>
                     <th>Descripcion</th>
-                    <th>Estado</th>
                   </tr>
 
                   </thead>
@@ -968,10 +968,10 @@ if(isset($varMsj))
 
                   <tr>
                     <td><?php echo $r->__GET('id_lista_precio');  ?></td>
-                    <td><?php echo $r->__GET('id_kermesse');  ?></td>
+                    <td><?php echo $r->__GET('nombreKermesse');  ?></td>
                     <td><?php echo $r->__GET('nombre');  ?></td>
                     <td><?php echo $r->__GET('descripcion');  ?></td>
-                    <td> <a href="frm_edit_listaPrecio.php?editCg=<?php echo $r->__GET('id_lista_precio');?>" target="blank">
+                    <td> <a href="frm_edit_listaPrecio.php?editlp=<?php echo $r->__GET('id_lista_precio');?>" target="blank">
                     <i class="far fa-edit" title="Editar lista precio"></i></a>
                     &nbsp;&nbsp;
                     <a href="frm_view_listaPrecio.php?viewlp=<?php echo $r->__GET('id_lista_precio');?>" target="blank">
@@ -993,7 +993,7 @@ if(isset($varMsj))
 
                   <tr>
                   <th>ID</th>
-                    <th>ID Kermesse</th>
+                    <th>Nombre Kermesse</th>
                     <th>Nombre</th>
                     <th>Descripcion</th>
                   </tr>

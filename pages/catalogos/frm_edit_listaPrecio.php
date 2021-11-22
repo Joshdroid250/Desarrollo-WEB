@@ -1,6 +1,21 @@
 <?php
 
 
+
+include '../../entidades/lista_precio.php';
+include '../../datos/dt_listaPrecio.php';
+include '../../entidades/kermesse.php';
+include '../../datos/dt_kermesse.php';
+
+$dtlp = new dt_listaPrecio();
+
+$lp = new ListaPrecio();
+$varIdlp = 0;
+if (isset($varIdlp)) {
+  $varIdlp = $_GET['editlp'];
+}
+
+$lp = $dtlp->ObtenerlistaPrecio($varIdlp);
 ?>
 
 
@@ -933,20 +948,32 @@
               <form>
               <div class="card-body">
               <div class="form-group">
-                    <label>ID de kermesse</label>
-                    <input type="number" class="form-control" id="id_kermesse" name="id_kermesse"placeholder="Digite numero de kermesse">
+                      <label>Seleccione kermesse</label>
+                      <select id="id_kermesse" name="id_kermesse" class="form-control">
+                        <option value="">Seleccione</option>
+
+                        <?php
+                        foreach($dtlp-> listaPrecio() as $r):
+                        ?>
+                        <tr>
+
+                        <option value="<?php echo $r->__GET('id_kermesse');?>"><?php echo $r->__GET('nombreKermesse');?></option>
+
+                        </tr>
+
+                        <?php
+                          endforeach;
+                        ?>
+
+                      </select>
                   </div>
                   <div class="form-group">
                     <label>nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+                    <input  value="<?php echo $lp->__GET('nombre'); ?>" type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
                   </div>
                   <div class="form-group">
                     <label>Descipcion</label>
-                    <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion">
-                  </div>
-                  <div class="form-group">
-                    <label>Estado</label>
-                    <input type="number" class="form-control" id="estado" name="estado" placeholder="estado">
+                    <input value="<?php echo $lp->__GET('descripcion'); ?>" type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion">
                   </div>
                 </div>
                 <!-- /.card-body -->

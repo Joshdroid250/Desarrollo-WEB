@@ -970,12 +970,12 @@ if(isset($varMsj))
 
                   <tr>
                     <td><?php echo $r->__GET('id_kermesse');  ?></td>
-                    <td><?php echo $r->__GET('idParroquia');  ?></td>
-                    <td><?php echo $r->__GET('nombre');  ?></td>
+                    <td><?php echo $r->__GET('nombreParro');  ?></td>
+                    <td><?php echo $r->__GET('nombreKerme');  ?></td>
                     <td><?php echo $r->__GET('fInicio');  ?></td>
                     <td><?php echo $r->__GET('fFinal');  ?></td>
                     <td><?php echo $r->__GET('descripcion');  ?></td>
-                    <td> <a href="frm_edit_kermesse.php?editK=<?php echo $r->__GET('id_kermesse');?>" target="blank">
+                    <td> <a href="frm_edit_kermesse.php?editKm=<?php echo $r->__GET('id_kermesse');?>" target="blank">
                     <i class="far fa-edit" title="Editar Kermesse"></i></a>
                     &nbsp;&nbsp;
                     <a href="frm_view_kermesse.php?viewKer=<?php echo $r->__GET('id_kermesse');?>" target="blank">

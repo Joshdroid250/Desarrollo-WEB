@@ -4,10 +4,10 @@
 
 error_reporting(0);
 
-include '../../datos/dt_kermesse.php';
 include '../../entidades/kermesse.php';
-include '../../datos/dt_parroquia.php';
+include '../../datos/dt_kermesse.php';
 include '../../entidades/parroquia.php';
+include '../../datos/dt_parroquia.php';
 
 
 
@@ -952,13 +952,28 @@ $pa = $dtkm->ObtenerListaKermesse($varIdKermesse);
               <form>
               <div class="card-body">
               <div class="form-group">
+                      <label>Nombre</label>
+                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de kermesse" required>
+                    </div>
+                    <div class="form-group">
                       <label>Seleccione parroquia</label>
                       <select id="IdParroquia" name="idParroquia" class="form-control">
                         <option value="">Seleccione</option>
-                      </div>
-                  <div class="form-group">
-                    <label>Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+
+                        <?php
+                        foreach($dtkm-> listaKermesse() as $r):
+                        ?>
+                        <tr>
+
+                        <option value="<?php echo $r->__GET('idParroquia');?>"><?php echo $r->__GET('nombreParro');?></option>
+
+                        </tr>
+
+                        <?php
+                          endforeach;
+                        ?>
+
+                      </select>
                   </div>
                   <div class="form-group">
                     <label>Fecha de inicio</label>
@@ -971,38 +986,6 @@ $pa = $dtkm->ObtenerListaKermesse($varIdKermesse);
                   <div class="form-group">
                     <label>Descripcion</label>
                     <input type="text" class="form-control" id="descripcion" name="Escriba una descripcion">
-                  </div>
-                  <div class="form-group">
-                    <label>Estado</label>
-                    <input type="number" class="form-control" id="estado" name="estado"placeholder="Digite el estado">
-                  </div>
-                  <div class="form-group">
-                    <label>Usuario Creacion</label>
-                    <input type="number" class="form-control" id="usuario_creacion" name="usuario_creacion"placeholder="Digite el user">
-                  </div>
-                  <div class="form-group">
-                    <label>Fecha de creacion</label>
-                    <input type="date" class="form-control" id="fecha_creacion" name="fecha_creacion"placeholder="">
-                  </div>
-                  <div class="form-group">
-                    <label>ID Parroquia</label>
-                    <input type="number" class="form-control" id="id_parroquia" name="id_parroquia"placeholder="Digite numero de parroquia">
-                  </div>
-                  <div class="form-group">
-                    <label>Usuario Modificacion</label>
-                    <input type="number" class="form-control" id="usuario_modificacion" name="usuario_modificacion"placeholder="Digite">
-                  </div>
-                  <div class="form-group">
-                    <label>Fecha Modifiacion</label>
-                    <input type="date" class="form-control" id="fecha_modificacion" name="fecha_modificacion"placeholder="">
-                  </div>
-                  <div class="form-group">
-                    <label>Usuario Eliminacion</label>
-                    <input type="number" class="form-control" id="usuario_eliminacion" name="usuario_eliminacion"placeholder="Digite">
-                  </div>
-                  <div class="form-group">
-                    <label>Fecha Eliminacion</label>
-                    <input type="date" class="form-control" id="fecha_eliminacion" name="fecha_eliminacion"placeholder="">
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -1056,19 +1039,11 @@ $(function () {
 <script>
 function setKermesse(){
 
-$("#id_parroquia").val("<?php echo $pa-> __GET('id_parroquia')?>");
-$("#nombre").val("<?php echo $pa-> __GET('nombre')?>");
-$("#fInicio").val("<?php echo $pa-> __GET('fInicio')?>");
-$("#fFinal").val("<?php echo $pa-> __GET('fFinal')?>");
-$("#descripcion").val("<?php echo $pa-> __GET('descripcion')?>");
-$("#estado").val("<?php echo $pa-> __GET('estado')?>");
-$("#usuario_creacion").val("<?php echo $pat-> __GET('usuario_creacion')?>");
-$("#fecha_creacion").val("<?php echo $pa-> __GET('fecha_creacion')?>");
-$("#usuario_modificacion").val("<?php echo $pa-> __GET('usuario_moficacion')?>");
-$("#fecha_modificacion").val("<?php echo $pa-> __GET('fecha_modificacion')?>");
-$("#usuario_eliminacion").val("<?php echo $pa-> __GET('usuario_eliminacion')?>");
-$("#fecha_eliminacion").val("<?php echo $pa-> __GET('fecha_eliminacion')?>");
-
+$("#id_kermesse").val("<?php echo $pa->__GET('id_kermesse') ?>")
+$("#nombre").val("<?php echo $pa->__GET('nombreKerme') ?>")
+$("#fInicio").val("<?php echo $pa->__GET('fInicio') ?>")
+$("#fFinal").val("<?php echo $pa->__GET('fFinal') ?>")
+$("#descripcion").val("<?php echo $pa->__GET('descripcion') ?>")
 }
 
 $(document).ready(function()
