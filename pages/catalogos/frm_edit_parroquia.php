@@ -6,15 +6,15 @@ include '../../datos/dt_parroquia.php';
 include '../../entidades/parroquia.php';
 
 
-$dtpa = new dt_parroquia();
+$dtpa = new Dt_parroquia();
 $parr = new parroquia();
 
-$varIdParroquia = 0;
+$varIdParro = 0;
 if(isset($varIdParro))
 {
-    $varIdParroquia = $_GET['editPa'];
+    $varIdParro = $_GET['editPa'];
 }
-$parr = $dtpa->ObtenerListaParroquia($varIdParroquia);
+$parr = $dtpa->ObtenerListaParroquia($varIdParro);
 
 
 ?>
@@ -950,7 +950,7 @@ $parr = $dtpa->ObtenerListaParroquia($varIdParroquia);
               <div class="card-body">
                   <div class="form-group">
                     <label>nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre"placeholder="Escriba Nombre de parroquia">
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escriba Nombre de parroquia">
                   </div>
                   <div class="form-group">
                     <label>direccion</label>
