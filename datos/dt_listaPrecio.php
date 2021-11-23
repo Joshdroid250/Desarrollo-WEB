@@ -62,4 +62,61 @@ class dt_listaPrecio extends Conexion
             die($lp->getMessage());
         }
     }
+    
+    public function regListaPrecio(listaPrecio $lstPrecio)
+    {
+        try {
+            $this->myCon = parent::conectar();
+            $sql = "INSERT INTO dbkermesse.tbl_lista_precio (id_lista_precio, id_kermesse, nombre, descripcion, estado)
+            VALUES (?,?,?,?,?)";
+            $this->myCon->prepare($sql)
+                ->execute(array(
+
+                    $lstPrecio->__GET('id_lista_precio'),
+                    $lstPrecio->__GET('id_kermesse'),
+                    $lstPrecio->__GET('nombre'),
+                    $lstPrecio->__GET('descripcion'),
+                    $lstPrecio->__GET('estado')
+                ));
+
+            $this->myCon = parent::desconectar();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function editListaPrecio(listaPrecio $lstPrecio)
+    {
+        try {
+            $this->myCon = parent::conectar();
+            $sql = "UPDATE tbl_lista_precio SET
+            id_kermesse = ?,
+            nombre = ?,
+            descripcion = ?,
+            estado = ? WHERE id_lista_precio = ?";
+            $this->myCon->prepare($sql)
+                ->execute(array(
+                    $lstPrecio->__GET('id_kermesse'),
+                    $lstPrecio->__GET('nombre'),
+                    $lstPrecio->__GET('descripcion'),
+                    $lstPrecio->__GET('estado'),
+                    $lstPrecio->__GET('id_lista_precio'),
+
+                ));
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    public function deleteLista($id)
+    {
+        try {
+            $this->myCon = parent::conectar();
+            $querySQL = "DELETE FROM tbl_lista_precio WHERE id_lista_precio = ?";
+            $stm = $this->myCon->prepare($querySQL);
+            $stm->execute(array($id));
+            $this->myCon = parent::desconectar();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
 }

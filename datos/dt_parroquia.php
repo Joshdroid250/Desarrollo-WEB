@@ -38,7 +38,7 @@ class Dt_parroquia extends Conexion
     }
 
 
-    public function editParro(Parroquia $parroc)
+    public function editParroquia(Parroquia $pr)
     {
         try{
             $this->myCon = parent::conectar();
@@ -51,13 +51,13 @@ class Dt_parroquia extends Conexion
             sitio_web = ? WHERE idParroquia = ?";
             $this->myCon->prepare($sql)
                 ->execute(array(
-                    $parroc->__GET('nombre'),
-                    $parroc->__GET('direccion'),
-                    $parroc->__GET('telefono'),
-                    $parroc->__GET('parroco'),
-                    $parroc->__GET('logo'),
-                    $parroc->__GET('sitio_web'),
-                    $parroc->__GET('idParroquia')
+                    $pr->__GET('nombre'),
+                    $pr->__GET('direccion'),
+                    $pr->__GET('telefono'),
+                    $pr->__GET('parroco'),
+                    $pr->__GET('logo'),
+                    $pr->__GET('sitio_web'),
+                    $pr->__GET('idParroquia')
                 ));
         }
         catch (Exception $e) {
@@ -66,21 +66,21 @@ class Dt_parroquia extends Conexion
     }
 
 
-    public function regParroquia(Parroquia $parroc)
+    public function regParroquia(parroquia $pr)
     {
         try {
             $this->myCon = parent::conectar();
-            $sql = "INSERT INTO tbl_parroquia (idParroquia,nombre,direccion,telefono,parroco,logo,sitio_web)
+            $sql = "INSERT INTO dbkermesse.tbl_parroquia (idParroquia,nombre,direccion,telefono,parroco,logo,sitio_web)
             VALUES (?,?,?,?,?,?,?)";
             $this->myCon->prepare($sql)
                 ->execute(array(
-                    $parroc->__GET('idParroquia'),
-                    $parroc->__GET('nombre'),
-                    $parroc->__GET('direccion'),
-                    $parroc->__GET('telefono'),
-                    $parroc->__GET('parroco'),
-                    $parroc->__GET('logo'),
-                    $parroc->__GET('sitio_web')
+                    $pr->__GET('idParroquia'),
+                    $pr->__GET('nombre'),
+                    $pr->__GET('direccion'),
+                    $pr->__GET('telefono'),
+                    $pr->__GET('parroco'),
+                    $pr->__GET('logo'),
+                    $pr->__GET('sitio_web')
                 ));
 
             $this->myCon = parent::desconectar();
@@ -92,9 +92,9 @@ class Dt_parroquia extends Conexion
     public function deleteParroquia($id)
     {
         try
-        {
+        {                                              
             $this->myCon = parent::conectar();
-            $querySQL = "DELETE FROM tbl_parroquia WHERE idParroquia = ?";
+            $querySQL = "DELETE FROM dbkermesse.tbl_parroquia WHERE idParroquia = ?";
             $stm = $this->myCon->prepare($querySQL);
             $stm->execute(array($id));
             $this->myCon = parent::desconectar();

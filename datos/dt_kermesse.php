@@ -80,4 +80,75 @@ class dt_kermesse extends Conexion
             die($cg->getMessage());
         }
     }
+
+    public function regKermesse(kermesse $kr)
+    {
+        try {
+            $this->myCon = parent::conectar();
+            $sql = "INSERT INTO dbkermesse.tbl_kermesse (id_kermesse, idParroquia, nombre, fInicio, fFinal, descripcion, estado, usuario_creacion, fecha_creacion)
+            VALUES (?,?,?,?,?,?,?,?,?)";
+            $this->myCon->prepare($sql)
+                ->execute(array(
+                    $kr->__GET('id_kermesse'),
+                    $kr->__GET('idParroquia'),
+                    $kr->__GET('nombre'),
+                    $kr->__GET('fInicio'),
+                    $kr->__GET('fFinal'),
+                    $kr->__GET('descripcion'),
+                    $kr->__GET('estado'),
+                    $kr->__GET('usuario_creacion'),
+                    $kr->__GET('fecha_creacion'),
+
+
+                ));
+
+            $this->myCon = parent::desconectar();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    public function editKerme(kermesse $kr)
+    {
+        try{
+            $this->myCon = parent::conectar();
+            $sql = "UPDATE dbkermesse.tbl_kermesse SET
+            idParroquia = ?,
+            nombre = ?,
+            fInicio = ?, 
+            fFinal = ?, 
+            descripcion = ?, 
+            estado = ?, 
+            usuario_modificacion = ?,
+            fecha_modificacion = ? WHERE id_kermesse = ?";
+            $this->myCon->prepare($sql)
+                ->execute(array(
+                    $kr->__GET('idParroquia'),
+                    $kr->__GET('nombre'),
+                    $kr->__GET('fInicio'),
+                    $kr->__GET('fFinal'),
+                    $kr->__GET('descripcion'),
+                    $kr->__GET('estado'),
+                    $kr->__GET('usuario_modificacion'),
+                    $kr->__GET('fecha_modificacion'),
+                    $kr->__GET('id_kermesse'),
+                ));
+        }
+        catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    public function deleteKerme($id)
+    {
+        try
+        {
+            $this->myCon = parent::conectar();
+            $querySQL = "DELETE FROM dbkermesse.tbl_kermesse WHERE id_kermesse = ?";
+            $stm = $this->myCon->prepare($querySQL);
+            $stm->execute(array($id));
+            $this->myCon = parent::desconectar();
+        }
+        catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
 }
