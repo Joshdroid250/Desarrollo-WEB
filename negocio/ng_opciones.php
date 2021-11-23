@@ -22,11 +22,11 @@ if ($_POST)
 
 
                 $dtOpc->RegistrarOpc($opc);
-                header("Location: /Proyecto-Kermesse-DAW-20212S-/pages/catalogos/tbl_opciones.php?msj=1");
+                header("Location: /Desarrollo-WEB-master/pages/catalogos/tbl_opciones.php?msj=1");
             }
             catch (Exception $e)
             {
-                header("Location: /Proyecto-Kermesse-DAW-20212S-/pages/catalogos/tbl_opciones.php?msj=2");
+                header("Location: /Desarrollo-WEB-master/pages/catalogos/tbl_opciones.php?msj=2");
                 die($e->getMessage());
             }
             break;
@@ -39,11 +39,11 @@ if ($_POST)
     
     
                     $dtOpc->editOpc($opc);
-                    header("Location: /Proyecto-Kermesse-DAW-20212S-/pages/catalogos/tbl_opciones.php?msj=3");
+                    header("Location: /Desarrollo-WEB-master/pages/catalogos/tbl_opciones.php?msj=3");
                 }
                 catch (Exception $e)
                 {
-                    header("Location: /Proyecto-Kermesse-DAW-20212S-/pages/catalogos/tbl_opciones.php?msj=4");
+                    header("Location: /Desarrollo-WEB-master/pages/catalogos/tbl_opciones.php?msj=4");
                     die($e->getMessage());
                 }
                 break;
@@ -60,12 +60,12 @@ if ($_GET)
     {
         $opc->__SET('id_opciones', $_GET['delO']);
         $dtOpc->deleteOpc($opc->__GET('id_opciones'));
-        header("Location: /Proyecto-Kermesse-DAW-20212S-/pages/catalogos/tbl_opciones.php?msj=5");
+        header("Location: /Desarrollo-WEB-master/pages/catalogos/tbl_opciones.php?msj=5");
 
     }
     catch(Exception $e)
     {
-        header("Location: /Proyecto-Kermesse-DAW-20212S-/pages/catalogos/tbl_opciones.php?msj=6");
+        header("Location: /Desarrollo-WEB-master/pages/catalogos/tbl_opciones.php?msj=6");
         die($e->getMessage());
     }
 }
