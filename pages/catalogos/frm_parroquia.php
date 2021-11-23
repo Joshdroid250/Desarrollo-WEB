@@ -1,19 +1,4 @@
 <?php
-
-
-error_reporting(0);
-
-include '../../datos/dt_parroquia.php';
-include '../../entidades/parroquia.php';
-
-
-$dtpa = new dt_parroquia();
-
-$varMsj = 0;
-if(isset($varMsj))
-{
-    $varMsj = $_GET['msj'];
-}
 ?>
 
 
@@ -943,9 +928,14 @@ if(isset($varMsj))
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form method="POST" action="../../negocio/ng_parroquia.php">
                 <div class="card-body">
                   <div class="form-group">
+                  <div class="form-group">
+                      <label >Numero de parroquia</label>
+                      <input type="number" class="form-control" id="idParroquia" name="idParroquia" placeholder="Numero de parroquia" required>
+                      <input type="hidden" value="1" name="txtaccion" id="txtaccion"/>
+                    </div>
                     <label>nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre"placeholder="Escriba Nombre de parroquia">
                   </div>

@@ -946,8 +946,13 @@ $parr = $dtpa->ObtenerListaParroquia($varIdParro);
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form method="POST" action="../../negocio/ng_parroquia.php">
               <div class="card-body">
+              <div class="form-group">
+                      <label >Numero de parroquia</label>
+                      <input type="number" class="form-control" id="idParroquia" name="idParroquia" placeholder="Numero de parroquia" required>
+                      <input type="hidden" value="2" name="txtaccion" id="txtaccion"/>
+                    </div>
                   <div class="form-group">
                     <label>nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escriba Nombre de parroquia">

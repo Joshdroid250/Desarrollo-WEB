@@ -945,8 +945,13 @@ $lp = $dtlp->ObtenerlistaPrecio($varIdlp);
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form method="POST" action="../../negocio/ng_listaPrecio.php">
               <div class="card-body">
+              <div class="form-group">
+                    <label>ID</label>
+                    <input type="number" class="form-control" id="id_lista_precio" name="id_lista_precio" placeholder="">
+                    <input type="hidden" value="2" name="txtaccion" id="txtaccion"/>
+                  </div>
               <div class="form-group">
                       <label>Seleccione kermesse</label>
                       <select id="id_kermesse" name="id_kermesse" class="form-control">

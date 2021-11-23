@@ -33,6 +33,7 @@ if(isset($varMsj))
   <link rel="stylesheet" href="../../plugins/DataTables1.11.2-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="../../plugins/DataTables1.11.2-/Responsive-2.2.9/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="../../plugins/DataTables1.11.2/Buttons-2.0.0/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/jAlert-master/dist/jAlert.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
@@ -956,6 +957,7 @@ if(isset($varMsj))
                     <th>Nombre Kermesse</th>
                     <th>Nombre</th>
                     <th>Descripcion</th>
+                    <th>Estado</th>
                   </tr>
 
                   </thead>
@@ -964,6 +966,12 @@ if(isset($varMsj))
 
                   <?php
                   foreach($dtcg -> listaPrecio() as $r):
+                    $estado = "";
+                    if ($r->__GET('estado') == 1 || $r->__GET('estado') == 2) {
+                      $estado = "Activo";
+                    } else {
+                      $estado = "Inactivo";
+                    }
                   ?>
 
                   <tr>
@@ -971,13 +979,14 @@ if(isset($varMsj))
                     <td><?php echo $r->__GET('nombreKermesse');  ?></td>
                     <td><?php echo $r->__GET('nombre');  ?></td>
                     <td><?php echo $r->__GET('descripcion');  ?></td>
+                    <td><?php echo $estado ?></td>
                     <td> <a href="frm_edit_listaPrecio.php?editlp=<?php echo $r->__GET('id_lista_precio');?>" target="blank">
                     <i class="far fa-edit" title="Editar lista precio"></i></a>
                     &nbsp;&nbsp;
                     <a href="frm_view_listaPrecio.php?viewlp=<?php echo $r->__GET('id_lista_precio');?>" target="blank">
                     <i class="far fa-eye" title="Ver precio"></i></a>
                     &nbsp;&nbsp;
-                    <a href="#" target="_blank">
+                    <a href="../../negocio/ng_listaPrecio.php?delL=<?php echo $r->__GET('id_lista_precio') ?>" target="_blank">
                       <i class="far fa-trash-alt" title="Eliminar"></i>
                     </a>
                     </td>
@@ -996,6 +1005,7 @@ if(isset($varMsj))
                     <th>Nombre Kermesse</th>
                     <th>Nombre</th>
                     <th>Descripcion</th>
+                    <th>Estado</th>
                   </tr>
 
                   </tfoot>
@@ -1042,7 +1052,8 @@ if(isset($varMsj))
 <script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.html5.min.js"></script>
 <script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.print.min.js"></script>
 <script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.colVis.min.js"></script>
-
+<script src="../../plugins/jAlert-master/dist/jAlert.min.js">//optional!!</script>
+<script src="../../plugins/jAlert-master/dist/jAlert-functions.min.js"></script>
 
 
 <!-- AdminLTE App -->
@@ -1050,23 +1061,58 @@ if(isset($varMsj))
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
+<script>function deleteLista(id)
+        {
+            confirm(function(e,btn)
+            {
+                e.preventDefault();
+                window.location.href = "../../negocio/ng_listaPrecio.php?delP="+id;
+            },
+            function(e,btn)
+            {
+                e.preventDefault();      
+            });
+        }
+        $(document).ready(function()
+        {
+            var mensaje = 0;
+                        mensaje = "<?php echo $varMsj?>";
+                        if(mensaje == "1")
+                        {
+                            successAlert('Exito', 'Los datos han sido registrados exitosamente');
+                        }
+                        if(mensaje == "2"|| mensaje =="4" || mensaje =="6")
+                        {
+                            errorAlert('Error', 'Revise los datos e intente de nuevo');
+                        }
+                        if(mensaje == "3")
+                        {
+                            successAlert('Exito', 'Los datos han sido actualizados exitosamente');
+                        }
+                        if(mensaje == "5")
+                        {
+                            successAlert('Exito', 'Los datos han sido eliminados exitosamente');
+                        }
+                        
 
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["excel", "pdf"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    }); // FIN DOC READY FUN
 
   </script>
 </body>

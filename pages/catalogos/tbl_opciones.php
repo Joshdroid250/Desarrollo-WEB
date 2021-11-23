@@ -978,7 +978,7 @@ if(isset($varMsj))
                     <a href="frm_view_opciones.php?viewO=<?php echo $r->__GET('id_opciones');?>" target="blank">
                     <i class="far fa-eye" title="Ver parroquia"></i></a>
                     &nbsp;&nbsp;
-                    <a href="#" onclick="deleteOpc(<?php echo $r->__GET('id_opciones');?>);">
+                    <a href="../../negocio/ng_opciones.php?delO=<?php echo $r->__GET('id_opciones');?>"target="blank">
                       <i class="far fa-trash-alt" title="Eliminar"></i>
                     </a>
                     </td>

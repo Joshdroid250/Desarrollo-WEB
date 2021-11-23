@@ -1,23 +1,8 @@
 <?php
-
-
-error_reporting(0);
-
-include '../../datos/dt_kermesse.php';
-include '../../entidades/kermesse.php';
 include '../../datos/dt_parroquia.php';
 include '../../entidades/parroquia.php';
-
-
-$dtkm = new dt_kermesse();
 $dtpa = new dt_parroquia();
 
-
-$varMsj = 0;
-if(isset($varMsj))
-{
-    $varMsj = $_GET['msj'];
-}
 ?>
 
 
@@ -947,11 +932,33 @@ if(isset($varMsj))
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form method="POST" action="../../negocio/ng_kermesse.php">
                 <div class="card-body">
-                  <div class="form-group">
-                    <label>ID Parroquia</label>
-                    <input type="number" class="form-control" id="id_parroquia" name="id_parroquia"placeholder="Digite numero de parroquia">
+
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="number" class="form-control" id="id_kermesse" name="id_kermesse" placeholder="" required>
+                    <input type="hidden" value="1" name="txtaccion" id="txtaccion"/>
+                  </div>
+                <div class="form-group">
+                      <label>Seleccione parroquia</label>
+                      <select id="IdParroquia" name="idParroquia" class="form-control">
+                        <option value="">Seleccione</option>
+
+                        <?php
+                        foreach($dtpa-> listaParroquia() as $r):
+                        ?>
+                        <tr>
+
+                        <option value="<?php echo $r->__GET('idParroquia');?>"><?php echo $r->__GET('nombre');?></option>
+
+                        </tr>
+
+                        <?php
+                          endforeach;
+                        ?>
+
+                      </select>
                   </div>
                   <div class="form-group">
                     <label>nombre</label>
@@ -967,39 +974,7 @@ if(isset($varMsj))
                   </div>
                   <div class="form-group">
                     <label>Descripcion</label>
-                    <input type="text" class="form-control" id="descripcion" name="Escriba una descripcion">
-                  </div>
-                  <div class="form-group">
-                    <label>Estado</label>
-                    <input type="number" class="form-control" id="estado" name="estado"placeholder="Digite el estado">
-                  </div>
-                  <div class="form-group">
-                    <label>Usuario Creacion</label>
-                    <input type="number" class="form-control" id="usuario_creacion" name="usuario_creacion"placeholder="Digite el user">
-                  </div>
-                  <div class="form-group">
-                    <label>Fecha de creacion</label>
-                    <input type="date" class="form-control" id="fecha_creacion" name="fecha_creacion"placeholder="">
-                  </div>
-                  <div class="form-group">
-                    <label>ID Parroquia</label>
-                    <input type="number" class="form-control" id="id_parroquia" name="id_parroquia"placeholder="Digite numero de parroquia">
-                  </div>
-                  <div class="form-group">
-                    <label>Usuario Modificacion</label>
-                    <input type="number" class="form-control" id="usuario_modificacion" name="usuario_modificacion"placeholder="Digite">
-                  </div>
-                  <div class="form-group">
-                    <label>Fecha Modifiacion</label>
-                    <input type="date" class="form-control" id="fecha_modificacion" name="fecha_modificacion"placeholder="">
-                  </div>
-                  <div class="form-group">
-                    <label>Usuario Eliminacion</label>
-                    <input type="number" class="form-control" id="usuario_eliminacion" name="usuario_eliminacion"placeholder="Digite">
-                  </div>
-                  <div class="form-group">
-                    <label>Fecha Eliminacion</label>
-                    <input type="date" class="form-control" id="fecha_eliminacion" name="fecha_eliminacion"placeholder="">
+                    <input type="text" class="form-control" id="descripcion" name="descripcion">
                   </div>
                 </div>
                 <!-- /.card-body -->

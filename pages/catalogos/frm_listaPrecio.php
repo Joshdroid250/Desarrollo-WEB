@@ -1,19 +1,9 @@
 <?php
 
+include '../../datos/dt_kermesse.php';
+include '../../entidades/kermesse.php';
 
-error_reporting(0);
-
-include '../../datos/dt_listaPrecio.php';
-include '../../entidades/lista_precio.php';
-
-
-$dtLp = new dt_listaPrecio();
-
-$varMsj = 0;
-if(isset($varMsj))
-{
-    $varMsj = $_GET['msj'];
-}
+$dtKer = new dt_kermesse();
 ?>
 
 
@@ -943,11 +933,33 @@ if(isset($varMsj))
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form method="POST" action="../../negocio/ng_listaPrecio.php">
                 <div class="card-body">
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="number" class="form-control" id="id_lista_precio" name="id_lista_precio" placeholder="Nombre">
+                    <input type="hidden" value="1" name="txtaccion" id="txtaccion"/>
+                  </div>
                   <div class="form-group">
-                    <label>ID de kermesse</label>
-                    <input type="number" class="form-control" id="id_kermesse" name="id_kermesse"placeholder="Digite numero de kermesse">
+                      <label>Seleccione Kermesse</label>
+                      <select id="id_kermesse" name="id_kermesse" class="form-control">
+                        <option value="">Seleccione</option>
+                       
+
+                        <?php
+                        foreach($dtKer->listaKermesse() as $r):
+                        ?>
+                        <tr>
+
+                        <option value="<?php echo $r->__GET('id_kermesse');?>"><?php echo $r->__GET('nombreKerme');?></option>
+
+                        </tr>
+
+                        <?php
+                          endforeach;
+                        ?>
+
+                      </select>
                   </div>
                   <div class="form-group">
                     <label>nombre</label>
@@ -956,10 +968,6 @@ if(isset($varMsj))
                   <div class="form-group">
                     <label>Descipcion</label>
                     <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion">
-                  </div>
-                  <div class="form-group">
-                    <label>Estado</label>
-                    <input type="number" class="form-control" id="estado" name="estado" placeholder="estado">
                   </div>
                 </div>
                 <!-- /.card-body -->

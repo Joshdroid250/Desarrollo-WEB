@@ -13,6 +13,7 @@ include '../../datos/dt_parroquia.php';
 
 $dtkm = new dt_kermesse();
 $pa = new parroquia();
+$dtPa = new Dt_parroquia();
 
 $varIdKermesse = 0;
 if(isset($varIdKermesse))
@@ -949,9 +950,14 @@ $pa = $dtkm->ObtenerListaKermesse($varIdKermesse);
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form  method="POST" action="../../negocio/ng_kermesse.php">
               <div class="card-body">
               <div class="form-group">
+              <div class="form-group">
+                    <label>ID</label>
+                    <input readonly type="number" class="form-control" id="id_kermesse" name="id_kermesse" placeholder="">
+                    <input type="hidden" value="2" name="txtaccion" id="txtaccion"/>
+                  </div>
                       <label>Nombre</label>
                       <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de kermesse" required>
                     </div>
@@ -961,11 +967,11 @@ $pa = $dtkm->ObtenerListaKermesse($varIdKermesse);
                         <option value="">Seleccione</option>
 
                         <?php
-                        foreach($dtkm-> listaKermesse() as $r):
+                        foreach($dtPa-> listaParroquia() as $r):
                         ?>
                         <tr>
 
-                        <option value="<?php echo $r->__GET('idParroquia');?>"><?php echo $r->__GET('nombreParro');?></option>
+                        <option value="<?php echo $r->__GET('idParroquia');?>"><?php echo $r->__GET('nombre');?></option>
 
                         </tr>
 
@@ -985,7 +991,7 @@ $pa = $dtkm->ObtenerListaKermesse($varIdKermesse);
                   </div>
                   <div class="form-group">
                     <label>Descripcion</label>
-                    <input type="text" class="form-control" id="descripcion" name="Escriba una descripcion">
+                    <input type="text" class="form-control" id="descripcion" name="descripcion">
                   </div>
                 </div>
                 <!-- /.card-body -->
