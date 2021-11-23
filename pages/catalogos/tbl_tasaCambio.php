@@ -3,12 +3,12 @@
 
 error_reporting(0);
 
-include '../../datos/dt_categoria_productos.php';
-include '../../entidades/categoria_productos.php';
+include '../../datos/dt_tasaCambio.php';
+include '../../entidades/tasaCambio.php';
 
 
 
-$dtcp = new Dt_categoria_productos();
+$dtcp = new Dt_tasacambio();
 
 $varMsj = 0;
 if(isset($varMsj))
@@ -23,10 +23,10 @@ if(isset($varMsj))
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>dbkermesse | Tabla Categoria Productos</title>
+  <title>dbkermesse |  Tasa de cambio</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
@@ -915,12 +915,12 @@ if(isset($varMsj))
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Categorias</h1>
+            <h1>Tasas de Cambio</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item active">Productos</li>
+              <li class="breadcrumb-item active">Tasa de Cambio</li>
             </ol>
           </div>
         </div>
@@ -932,19 +932,22 @@ if(isset($varMsj))
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-              <h3 class="card-title">Categoria productos</h3>
+              <h3 class="card-title">Tasas de cambio</h3>
                 </div>
                 <div class="card-body">
                     <div class="form-group col-md-12" style="text-align:right">
-                    <a href="frm_categoria_productos.php" title="Nueva Categoria de Producto" target="blank"><i class="far fa-plus-square"></i>Nueva Categoria</a>
+                    <a href="frm_TasaCambio.php" title="Nueva Tasa de Cambio" target="blank"><i class="far fa-plus-square"></i>Nueva Tasa de Cambio</a>
                     </div>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
 
                   <tr>
                     <th>ID</th>
-                    <th>Nombre Categoria</th>
-                    <th>Descripcion</th>
+                    <th>MonedaO</th>
+                    <th>MonedaC</th>
+                    <th>Mes</th>
+                    <th>Año</th>
+                    
                    
                   </tr>
 
@@ -953,22 +956,25 @@ if(isset($varMsj))
                   <tbody>
 
                   <?php
-                  foreach($dtcp -> listacproductos() as $r):
+                  foreach($dtcp -> listatasacambio() as $r):
                   ?>
 
                   <tr>
-                    <td><?php echo $r->__GET('id_categoria_producto');  ?></td>
-                    <td><?php echo $r->__GET('nombre');  ?></td>
-                    <td><?php echo $r->__GET('descripcion');  ?></td>
+                    <td><?php echo $r->__GET('id_tasaCambio');  ?></td>
+                    <td><?php echo $r->__GET('id_monedaO');  ?></td>
+                    <td><?php echo $r->__GET('id_monedaC');  ?></td>
+                    <td><?php echo $r->__GET('mes');  ?></td>
+                    <td><?php echo $r->__GET('anio');  ?></td>
+                 
                   
-                    <td> <a href="frm_edit_categoria_productos.php?editCp=<?php echo $r->__GET('id_categoria_producto');?>" target="_blank">
-                    <i class="far fa-edit" title="Editar Categoria Producto"></i></a>
+                    <td> <a href="frm_edit_tasaCambio.php?editCp=<?php echo $r->__GET('id_tasaCambio');?>" target="_blank">
+                    <i class="far fa-edit" title="Editar Tasa de cambio"></i></a>
                     &nbsp;&nbsp;
-                    <a href="frm_view_categoria_productos.php?viewCyP=<?php echo $r->__GET('id_categoria_producto');?>" target="_blank">
-                    <i class="far fa-eye" title="Ver Categoria Producto"></i></a>
+                    <a href="frm_view_tasaCambio.php?viewCyP=<?php echo $r->__GET('id_tasaCambio');?>" target="_blank">
+                    <i class="far fa-eye" title="Ver Tasas de cambio"></i></a>
                     &nbsp;&nbsp; 
-                    <a href="../../negocio/ng_categoria_producto.php?del=<?php echo $r->__GET('id_categoria_producto');?>" target="_blank">
-                      <i class="far fa-trash-alt" title="Eliminar Categoria"></i>
+                    <a href="../../negocio/ng_tasaCambio.php?del=<?php echo $r->__GET('id_tasaCambio');?>" target="_blank">
+                      <i class="far fa-trash-alt" title="Eliminar Tasa de cambio"></i>
                     </a>
                     </td>
                   </tr>
@@ -982,9 +988,11 @@ if(isset($varMsj))
                   <tfoot>
 
                   <tr>
-                  <th>ID</th>
-                    <th>Nombre Categoria</th>
-                    <th>Descripcion</th>
+                    <th>ID</th>
+                    <th>MonedaO</th>
+                    <th>MonedaC</th>
+                    <th>Mes</th>
+                    <th>Año</th>
                    
                   </tr>
 
@@ -1069,7 +1077,7 @@ function(e,btn)
 
   if(mensaje == "1" )
   {
-    sucessAlert('Exito','Registrado exitosamente!');
+  alert('Exito','Registrado exitosamente!');
   }
   if(mensaje == "2" || mensaje=="4"|| mensaje=="6")
   {

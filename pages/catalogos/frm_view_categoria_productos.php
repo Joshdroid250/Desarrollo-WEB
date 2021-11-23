@@ -11,10 +11,10 @@ include '../../entidades/categoria_productos.php';
 $dtcp = new Dt_categoria_productos();
 $cap = new CategoriaP();
 
-$varIdCategoriaG = 0;
+$varIdCategoriaP = 0;
 if(isset($varIdCategoriaP))
 {
-    $varIdCategoriaG = $_GET['viewCyP'];
+    $varIdCategoriaP = $_GET['viewCyP'];
 }
 $cap = $dtcp-> obtenerCategoriaP ($varIdCategoriaP);
 
@@ -433,102 +433,27 @@ $cap = $dtcp-> obtenerCategoriaP ($varIdCategoriaP);
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Control
+                Tables
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class=""></i>
-                  <p>
-                    Productos
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="tbl_productos.php" class="nav-link">
+                <a href="../tables/simple.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Productos</p>
-                </a>
-              </li>
-               <li class="nav-item">
-                <a href="tbl_categoria_productos.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Categorias</p>
-                </a>
-              </li>
-                </ul>
-              </li>
-
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class=""></i>
-                  <p>
-                    Gastos
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="tbl_gastos.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Gastos</p>
+                  <p>Simple Tables</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="tbl_categoria_gastos.php" class="nav-link">
+                <a href="../tables/data.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Categorias</p>
-                </a>
-              </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class=""></i>
-                  <p>
-                    Kermesse
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                <li class="nav-item">
-                <a href="tbl_parroquia.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Parroquia</p>
-                </a>
-                </li>
-                <li class="nav-item">
-                <a href="tbl_kermesse.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kermesse</p>
-                  </a>
-                </li>
-                </a>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class=""></i>
-                <p>
-                  Lista precio
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="tbl_listaPrecioDet.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Detalle precio</p>
+                  <p>DataTables</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="tbl_listaPrecio.php" class="nav-link">
+                <a href="../tables/jsgrid.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Lista de precio</p>
+                  <p>jsGrid</p>
                 </a>
               </li>
             </ul>
@@ -964,7 +889,7 @@ $cap = $dtcp-> obtenerCategoriaP ($varIdCategoriaP);
                   </div>
                   <div class="form-group">
                     <label>Estado</label>
-                    <input type="number" class="form-control" id="estado" name="estado"disabled>
+                    <input type="text" class="form-control" id="estado" name="estado"disabled>
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -973,7 +898,7 @@ $cap = $dtcp-> obtenerCategoriaP ($varIdCategoriaP);
                   
                   <!--<button type="submit" class="btn btn-primary">Guardar</button>
                       <button type="reset" class="btn btn-danger">Cancelar</button> -->
-                  <a href="tbl_categoria_gastos.php"><i class="far fa fa-undo-alt"></i>Regresar</a>
+                  <a href="tbl_categoria_productos.php"><i class="far fa fa-undo-alt"></i>Regresar</a>
                 
                 </div>
               </form>
@@ -1018,18 +943,18 @@ $(function () {
 });
 </script>
 <script>
-function setCategoriasg(){
+function setCategoriasp(){
 
-  $("#id_categoria_producto").val("<?php echo $cat-> __GET('id_categoria_producto')?>");
-$("#nombre").val("<?php echo $cat-> __GET('nombre')?>");
-$("#descripcion").val("<?php echo $cat-> __GET('descripcion')?>");
-$("#estado").val("<?php echo $cat-> __GET('estado')?>");
+  $("#id_categoria_producto").val("<?php echo $cap-> __GET('id_categoria_producto')?>");
+$("#nombre").val("<?php echo $cap-> __GET('nombre')?>");
+$("#descripcion").val("<?php echo $cap-> __GET('descripcion')?>");
+$("#estado").val("<?php echo $cap-> __GET('estado')?>");
 
 }
 
 $(document).ready(function()
 {
-  setCategoriasg();
+  setCategoriasp();
 });
 
 </script>

@@ -430,102 +430,27 @@ if(isset($varMsj))
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Control
+                Tables
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class=""></i>
-                  <p>
-                    Productos
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="tbl_productos.php" class="nav-link">
+                <a href="../tables/simple.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Productos</p>
-                </a>
-              </li>
-               <li class="nav-item">
-                <a href="tbl_categoria_productos.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Categorias</p>
-                </a>
-              </li>
-                </ul>
-              </li>
-
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class=""></i>
-                  <p>
-                    Gastos
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="tbl_gastos.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Gastos</p>
+                  <p>Simple Tables</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="tbl_categoria_gastos.php" class="nav-link">
+                <a href="../tables/data.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Categorias</p>
-                </a>
-              </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class=""></i>
-                  <p>
-                    Kermesse
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                <li class="nav-item">
-                <a href="tbl_parroquia.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Parroquia</p>
-                </a>
-                </li>
-                <li class="nav-item">
-                <a href="tbl_kermesse.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kermesse</p>
-                  </a>
-                </li>
-                </a>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class=""></i>
-                <p>
-                  Lista precio
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="tbl_listaPrecioDet.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Detalle precio</p>
+                  <p>DataTables</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="tbl_listaPrecio.php" class="nav-link">
+                <a href="../tables/jsgrid.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Lista de precio</p>
+                  <p>jsGrid</p>
                 </a>
               </li>
             </ul>
@@ -944,15 +869,24 @@ if(isset($varMsj))
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form method="POST" action="../../negocio/ng_categoria_producto.php">
                 <div class="card-body">
-                  <div class="form-group">
-                    <label>Nombre Categoria</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre"placeholder="Digite el Nombre">
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" class="form-control" id="id_categoria_producto" name="id_categoria_producto" readonly required>
+                    <input type="hidden" value="1" name="txtaccion" id="txtaccion"/>
                   </div>
                   <div class="form-group">
-                    <label>Descipcion</label>
-                    <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion">
+                    <label>Nombre Categoria</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre"placeholder="Digite el Nombre" required> 
+                  </div>
+                  <div class="form-group">
+                    <label>Descripcion</label>
+                    <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Estado</label>
+                    <input type="number" class="form-control" id="estado" name="estado" placeholder="Estado" required>
                   </div>
                 </div>
                 <!-- /.card-body -->

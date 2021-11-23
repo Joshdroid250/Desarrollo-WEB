@@ -1,21 +1,21 @@
-<?php
+ <?php
 
 
 error_reporting(0);
 
-include '../../datos/dt_categoria_productos.php';
-include '../../entidades/categoria_productos.php';
+include '../../datos/dt_rol.php';
+include '../../entidades/rol.php';
 
 
 
-$dtcp = new Dt_categoria_productos();
+$dtcp = new Dt_rol();
 
 $varMsj = 0;
 if(isset($varMsj))
 {
     $varMsj = $_GET['msj'];
 }
-?>
+?> 
 
 
 <!DOCTYPE html>
@@ -23,10 +23,11 @@ if(isset($varMsj))
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>dbkermesse | Tabla Categoria Productos</title>
+  <title>dbkermesse | Tabla Roles</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
@@ -915,12 +916,12 @@ if(isset($varMsj))
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Categorias</h1>
+            <h1>Roles</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item active">Productos</li>
+              <li class="breadcrumb-item active">Rol</li>
             </ol>
           </div>
         </div>
@@ -932,18 +933,17 @@ if(isset($varMsj))
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-              <h3 class="card-title">Categoria productos</h3>
+              <h3 class="card-title">Rol</h3>
                 </div>
                 <div class="card-body">
                     <div class="form-group col-md-12" style="text-align:right">
-                    <a href="frm_categoria_productos.php" title="Nueva Categoria de Producto" target="blank"><i class="far fa-plus-square"></i>Nueva Categoria</a>
+                    <a href="frm_rol.php" title="Nuevo Rol" target="blank"><i class="far fa-plus-square"></i>Nuevo Rol</a>
                     </div>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
 
                   <tr>
                     <th>ID</th>
-                    <th>Nombre Categoria</th>
                     <th>Descripcion</th>
                    
                   </tr>
@@ -953,22 +953,21 @@ if(isset($varMsj))
                   <tbody>
 
                   <?php
-                  foreach($dtcp -> listacproductos() as $r):
+                  foreach($dtcp -> listarol() as $r):
                   ?>
 
                   <tr>
-                    <td><?php echo $r->__GET('id_categoria_producto');  ?></td>
-                    <td><?php echo $r->__GET('nombre');  ?></td>
-                    <td><?php echo $r->__GET('descripcion');  ?></td>
+                    <td><?php echo $r->__GET('id_rol');  ?></td>
+                    <td><?php echo $r->__GET('rol_descripcion');  ?></td>
                   
-                    <td> <a href="frm_edit_categoria_productos.php?editCp=<?php echo $r->__GET('id_categoria_producto');?>" target="_blank">
-                    <i class="far fa-edit" title="Editar Categoria Producto"></i></a>
+                    <td> <a href="frm_edit_rol.php?editCp=<?php echo $r->__GET('id_rol');?>" target="_blank">
+                    <i class="far fa-edit" title="Editar Rol"></i></a>
                     &nbsp;&nbsp;
-                    <a href="frm_view_categoria_productos.php?viewCyP=<?php echo $r->__GET('id_categoria_producto');?>" target="_blank">
-                    <i class="far fa-eye" title="Ver Categoria Producto"></i></a>
+                    <a href="frm_view_rol.php?viewCyP=<?php echo $r->__GET('id_rol');?>" target="_blank">
+                    <i class="far fa-eye" title="Ver Rol"></i></a>
                     &nbsp;&nbsp; 
-                    <a href="../../negocio/ng_categoria_producto.php?del=<?php echo $r->__GET('id_categoria_producto');?>" target="_blank">
-                      <i class="far fa-trash-alt" title="Eliminar Categoria"></i>
+                    <a href="../../negocio/ng_rol.php?del=<?php echo $r->__GET('id_rol');?>" target="_blank">
+                      <i class="far fa-trash-alt" title="Eliminar Rol"></i>
                     </a>
                     </td>
                   </tr>
@@ -983,7 +982,6 @@ if(isset($varMsj))
 
                   <tr>
                   <th>ID</th>
-                    <th>Nombre Categoria</th>
                     <th>Descripcion</th>
                    
                   </tr>
@@ -1001,7 +999,7 @@ if(isset($varMsj))
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.1.0-rc
     </div>
-    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Web<a href="#"></a>.</strong> 2021.
   </footer>
 
   <!-- Control Sidebar -->
@@ -1042,30 +1040,11 @@ if(isset($varMsj))
 <!-- Page specific script -->
 <script> 
 
-
-/* function borrarCategoriap()
-{
-  confirm(function(e,btn)
-  {
-  e.preventDefault();
-window.location.href = "../negocio/ng_categoria_producto.php?delCp=<?php echo $r->__GET('id_categoria_producto');?>";
-  },
-function(e,btn)
-{
-  e.preventDefault();
-});
-} */
-
-
-
-
-
-
   $(document).ready(function()
   
 {
   var mensaje = 0;
-  mensaje= "<?php echo $varMsj ?>";
+  mensaje = "<?php echo $varMsj ?>";
 
   if(mensaje == "1" )
   {
@@ -1085,14 +1064,14 @@ function(e,btn)
   }
   
 
-  $(function () {
-    $("#tbl_categoria_productos").DataTable({
+ 
+    $("#tbl_rol").DataTable({
       "responsive": true,
       "lengthChange": false,
       "autoWidth": false,
       "buttons": ["excel", "pdf"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    /* $('#example2').DataTable({
+   /*   $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,
@@ -1100,9 +1079,8 @@ function(e,btn)
       "info": true,
       "autoWidth": false,
       "responsive": true,
-    }); */
-  });
-
+    });  */
+  
   });
   </script>
 </body>

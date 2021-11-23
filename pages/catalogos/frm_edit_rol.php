@@ -1,20 +1,23 @@
+
 <?php
 
 
 error_reporting(0);
 
-include '../../datos/dt_categoria_productos.php';
-include '../../entidades/categoria_productos.php';
+include '../../datos/dt_rol.php';
+include '../../entidades/rol.php';
 
 
+$dtcp = new Dt_rol();
+$cap = new Rol();
 
-$dtcp = new Dt_categoria_productos();
-
-$varMsj = 0;
-if(isset($varMsj))
+$varIdCategoriaP = 0;
+if(isset($varIdCategoriaP))
 {
-    $varMsj = $_GET['msj'];
+    $varIdCategoriaP = $_GET['editCp'];
 }
+$cap = $dtcp->obtenerRol($varIdCategoriaP);
+
 ?>
 
 
@@ -23,7 +26,7 @@ if(isset($varMsj))
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>dbkermesse | Tabla Categoria Productos</title>
+  <title>AdminLTE 3 | General Form Elements</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -32,8 +35,7 @@ if(isset($varMsj))
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
-<body class="hold-transition sidebar-mini sidebar-collapse">
-<!-- Site wrapper -->
+<body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -392,8 +394,8 @@ if(isset($varMsj))
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Forms
@@ -402,7 +404,7 @@ if(isset($varMsj))
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../forms/general.html" class="nav-link">
+                <a href="../forms/general.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>General Elements</p>
                 </a>
@@ -427,8 +429,8 @@ if(isset($varMsj))
               </li>
             </ul>
           </li>
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Tables
@@ -436,94 +438,24 @@ if(isset($varMsj))
               </p>
             </a>
             <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class=""></i>
-                  <p>
-                    Productos
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="tbl_productos.php" class="nav-link">
+                <a href="../tables/simple.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Productos</p>
+                  <p>Simple Tables</p>
                 </a>
               </li>
-               <li class="nav-item">
-                <a href="tbl_categoria_productos.php" class="nav-link">
+              <li class="nav-item">
+                <a href="../tables/data.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Categorias</p>
+                  <p>DataTables</p>
                 </a>
               </li>
-                </ul>
-              </li>
-
-
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class=""></i>
-                  <p>
-                    Gastos
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="tbl_gastos.php" class="nav-link">
+                <a href="../tables/jsgrid.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Gastos</p>
+                  <p>jsGrid</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="tbl_categoria_gastos.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Categorias</p>
-                </a>
-              </li>
-                </ul>
-              </li>
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class=""></i>
-                  <p>
-                    Control de caja
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="tbl_tasaCambio.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Tasa Cambio</p>
-                </a>
-              </li>
-                </ul>
-              </li>
-
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class=""></i>
-                  <p>
-                    Seguridad
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="tbl_rol.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Rol</p>
-                </a>
-              </li>
-                </ul>
-              </li>
-
-              
-             
             </ul>
           </li>
           <li class="nav-header">EXAMPLES</li>
@@ -915,89 +847,64 @@ if(isset($varMsj))
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Categorias</h1>
+            <h1>Rol</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item active">Productos</li>
+              <li class="breadcrumb-item active">Editar Rol</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
 
-
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-12">
-            <div class="card">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
               <div class="card-header">
-              <h3 class="card-title">Categoria productos</h3>
-                </div>
+                <h3 class="card-title">Editar Rol</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method="POST" action="../../negocio/ng_rol.php">
                 <div class="card-body">
-                    <div class="form-group col-md-12" style="text-align:right">
-                    <a href="frm_categoria_productos.php" title="Nueva Categoria de Producto" target="blank"><i class="far fa-plus-square"></i>Nueva Categoria</a>
-                    </div>
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre Categoria</th>
-                    <th>Descripcion</th>
-                   
-                  </tr>
-
-                  </thead>
-
-                  <tbody>
-
-                  <?php
-                  foreach($dtcp -> listacproductos() as $r):
-                  ?>
-
-                  <tr>
-                    <td><?php echo $r->__GET('id_categoria_producto');  ?></td>
-                    <td><?php echo $r->__GET('nombre');  ?></td>
-                    <td><?php echo $r->__GET('descripcion');  ?></td>
-                  
-                    <td> <a href="frm_edit_categoria_productos.php?editCp=<?php echo $r->__GET('id_categoria_producto');?>" target="_blank">
-                    <i class="far fa-edit" title="Editar Categoria Producto"></i></a>
-                    &nbsp;&nbsp;
-                    <a href="frm_view_categoria_productos.php?viewCyP=<?php echo $r->__GET('id_categoria_producto');?>" target="_blank">
-                    <i class="far fa-eye" title="Ver Categoria Producto"></i></a>
-                    &nbsp;&nbsp; 
-                    <a href="../../negocio/ng_categoria_producto.php?del=<?php echo $r->__GET('id_categoria_producto');?>" target="_blank">
-                      <i class="far fa-trash-alt" title="Eliminar Categoria"></i>
-                    </a>
-                    </td>
-                  </tr>
-                  <?php
-                  endforeach;
-                  ?>
-
-
-                  </tbody>
-
-                  <tfoot>
-
-                  <tr>
-                  <th>ID</th>
-                    <th>Nombre Categoria</th>
-                    <th>Descripcion</th>
-                   
-                  </tr>
-
-                  </tfoot>
-                  </table>
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" value="<?php echo $cap->__GET('id_rol')?>" class="form-control" id="id_rol" name="id_rol" readonly required>
+                    <input type="hidden" value="2" name="txtaccion" id="txtaccion"/>
+                  </div>
+                  <div class="form-group">
+                    <label>Descripcion</label>
+                    <input type="text" class="form-control" id="rol_descripcion" name="rol_descripcion" placeholder="Descripcion" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Estado</label>
+                    <input type="number" class="form-control" id="estado" name="estado" placeholder="Estado" readonly required>
+                  </div>
                 </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  
+                  <button type="submit" class="btn btn-primary">Guardar</button>
+                  <button type="reset" class="btn btn-danger">Cancelar</button>
+                </div>
+              </form>
             </div>
-        </div>
-    </div>
- 
+            <!-- /.card -->
 
-
-<footer class="main-footer">
+            
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.1.0-rc
     </div>
@@ -1016,94 +923,32 @@ if(isset($varMsj))
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-
-
-<script src="../../plugins/DataTables1.11.2/datatables.min.css"></script>
-<script src="../../plugins/DataTables1.11.2/Responsive-2.2.9/js/responsive.bootstrap4.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/Responsive-2.2.9/js/dataTables.responsive.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/Responsive-2.2.9/js/responsive.dataTables.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/dataTables.buttons.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.bootstrap4.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/JSZip-2.5.0/jszip.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/pdfmake-0.1.36/pdfmake.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/pdfmake-0.1.36/vfs_fonts.js"></script>
-<script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.html5.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.print.min.js"></script>
-<script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.colVis.min.js"></script>
-
-
-
+<!-- bs-custom-file-input -->
+<script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
-<script> 
 
-
-/* function borrarCategoriap()
-{
-  confirm(function(e,btn)
-  {
-  e.preventDefault();
-window.location.href = "../negocio/ng_categoria_producto.php?delCp=<?php echo $r->__GET('id_categoria_producto');?>";
-  },
-function(e,btn)
-{
-  e.preventDefault();
+<script>
+$(function () {
+  bsCustomFileInput.init();
 });
-} */
+</script>
+<script>
+function setCategoriasp(){
+$("#id_rol").css("background-color", ":#black")
+$("#rol_descripcion").val("<?php echo $cap-> __GET('rol_descripcion')?>");
+$("#estado").val("<?php echo $cap-> __GET('estado')?>");
 
+}
 
-
-
-
-
-  $(document).ready(function()
-  
+$(document).ready(function()
 {
-  var mensaje = 0;
-  mensaje= "<?php echo $varMsj ?>";
+  setCategoriasp();
+});
 
-  if(mensaje == "1" )
-  {
-    sucessAlert('Exito','Registrado exitosamente!');
-  }
-  if(mensaje == "2" || mensaje=="4"|| mensaje=="6")
-  {
-    errorAlert('Error', 'intente nuevamente!');
-  }
-  if(mensaje == "3")
-  {
-    sucessAlert('Exito','Editado exitosamente!');
-  }
-  if(mensaje == "5")
-  {
-    sucessAlert('Exito','Eliminado exitosamente!');
-  }
-  
-
-  $(function () {
-    $("#tbl_categoria_productos").DataTable({
-      "responsive": true,
-      "lengthChange": false,
-      "autoWidth": false,
-      "buttons": ["excel", "pdf"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    /* $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    }); */
-  });
-
-  });
-  </script>
+</script>
 </body>
 </html>

@@ -3,10 +3,10 @@
 
 error_reporting(0);
 
-include '../../datos/dt_gastos.php';
-include '../../entidades/gastos.php';
+include '../../datos/dt_productos.php';
+include '../../entidades/productos.php';
 
-$dtg = new Dt_gastos();
+$dtg = new Dt_productos();
 
 $varMsj = 0;
 if(isset($varMsj))
@@ -23,20 +23,15 @@ if(isset($varMsj))
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>dbkermesse | Tabla Productos</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+   <!-- Google Font: Source Sans Pro -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../../plugins/DataTables1.11.2-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/DataTables1.11.2-/Responsive-2.2.9/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/DataTables1.11.2/Buttons-2.0.0/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
-
-<body class="hold-transition sidebar-mini">
-
+<body class="hold-transition sidebar-mini sidebar-collapse">
+<!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -430,16 +425,16 @@ if(isset($varMsj))
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Control
+                Tables
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+            <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class=""></i>
                   <p>
@@ -487,54 +482,48 @@ if(isset($varMsj))
               </li>
                 </ul>
               </li>
+
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class=""></i>
                   <p>
-                    Kermesse
+                    Control de caja
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
-                <li class="nav-item">
-                <a href="tbl_parroquia.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Parroquia</p>
-                </a>
-                </li>
-                <li class="nav-item">
-                <a href="tbl_kermesse.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kermesse</p>
-                  </a>
-                </li>
-                </a>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class=""></i>
-                <p>
-                  Lista precio
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="tbl_listaPrecioDet.php" class="nav-link">
+                <a href="tbl_tasaCambio.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Detalle precio</p>
+                  <p>Tasa Cambio</p>
                 </a>
               </li>
+                </ul>
+              </li>
+
+
               <li class="nav-item">
-                <a href="tbl_listaPrecio.php" class="nav-link">
+                <a href="#" class="nav-link">
+                  <i class=""></i>
+                  <p>
+                    Seguridad
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="tbl_rol.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Lista de precio</p>
+                  <p>Rol</p>
                 </a>
               </li>
+                </ul>
+              </li>
+
+              
+             
             </ul>
           </li>
-
           <li class="nav-header">EXAMPLES</li>
           <li class="nav-item">
             <a href="../calendar.html" class="nav-link">
@@ -924,12 +913,12 @@ if(isset($varMsj))
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DataTables</h1>
+            <h1>Productos</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item active">Gastos</li>
+              <li class="breadcrumb-item active">Productos</li>
             </ol>
           </div>
         </div>
@@ -941,19 +930,19 @@ if(isset($varMsj))
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-              <h3 class="card-title">Gastos</h3>
+              <h3 class="card-title">Productos</h3>
                 </div>
                 <div class="card-body">
                 <div  class="form-group col-md-12" style="text-align:right">
-                    <a href="frm_gastos.php" title="Nuevo Gasto" target="blank"><i class="far fa-plus-square"></i>Nuevo Gasto</a>
+                    <a href="frm_productos.php" title="Nuevo Gasto" target="blank"><i class="far fa-plus-square"></i>Nuevo Producto</a>
                     </div>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
 
                   <tr>
-                    <th>Id Producto</th>
-                    <th>Id Comunidad</th>
-                    <th>Id Categoria Producto</th>
+                    <th>ID</th>
+                    <th>Comunidad</th>
+                    <th>Categoria Producto</th>
                     <th>Nombre</th>
                     <th>Descripcion</th>
                     <th>Cantidad</th>
@@ -967,13 +956,13 @@ if(isset($varMsj))
                   <tbody>
 
                   <?php
-                  foreach($dtg-> listagastos() as $r):
+                  foreach($dtg-> listaproductos() as $r):
                   ?>
 
                   <tr>
                     <td><?php echo $r->__GET('id_producto');  ?></td>
                     <td><?php echo $r->__GET('id_comunidad');  ?></td>
-                    <td><?php echo $r->__GET('id_cat_producto');  ?></td>
+                    <td><?php echo $cp->__GET('id_categoria_producto');  ?>"><?php echo $cp->__GET('nombre'); ?></td>
                     <td><?php echo $r->__GET('nombre');  ?></td>
                     <td><?php echo $r->__GET('descripcion');  ?></td>
                     <td><?php echo $r->__GET('cantidad');  ?></td>
@@ -986,7 +975,7 @@ if(isset($varMsj))
                     <a href="frm_view_productos.php?viewP=<?php echo $r->__GET('id_producto');?>" target="blank">
                     <i class="far fa-eye" title="Ver Producto"></i></a>
                     &nbsp;&nbsp;
-                    <a href="#" target="_blank">
+                    <a href="../../negocio/ng_producto.php?del=<?php echo $r->__GET('id_producto');?>" target="_blank">
                       <i class="far fa-trash-alt" title="Eliminar Producto"></i>
                     </a>
                     </td>
@@ -1002,19 +991,13 @@ if(isset($varMsj))
                   <tfoot>
 
                   <tr>
-                  <th>Id gasto</th>
-                    <th>Id kermesse</th>
-                    <th>Id categoria</th>
-                    <th>Fecha del gasto</th>
-                    <th>Concepto</th>
-                    <th>Monto</th>
-                    <th>Usuario de creacion</th>
-                    <th>Fecha creacion</th>
-                    <th>Uduario de modificacion</th>
-                    <th>Fecha modificacion</th>
-                    <th>Usuario de eliminacion</th>
-                    <th>Fecha eliminacion</th>
-                    <th>Estado</th>
+                  <th>ID</th>
+                    <th>Comunidad</th>
+                    <th>Categoria Producto</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Cantidad</th>
+                    <th>precio sugerido</th>
                   </tr>
 
                   </tfoot>
@@ -1070,12 +1053,36 @@ if(isset($varMsj))
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
+
+$(document).ready(function()
+  
+  {
+    var mensaje = 0;
+    mensaje= "<?php echo $varMsj ?>";
+  
+    if(mensaje == "1" )
+    {
+      sucessAlert('Exito','Registrado exitosamente!');
+    }
+    if(mensaje == "2" || mensaje=="4"|| mensaje=="6")
+    {
+      errorAlert('Error', 'intente nuevamente!');
+    }
+    if(mensaje == "3")
+    {
+      sucessAlert('Exito','Editado exitosamente!');
+    }
+    if(mensaje == "5")
+    {
+      sucessAlert('Exito','Eliminado exitosamente!');
+    }
+
   $(function () {
-    $("#example1").DataTable({
+    $("#tbl_productos").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["excel", "pdf"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-  /*  $('#example2').DataTable({
+   $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,
@@ -1083,9 +1090,9 @@ if(isset($varMsj))
       "info": true,
       "autoWidth": false,
       "responsive": true,
-    });*/
+    });
   });
-
+  });
 
   </script>
 </body>

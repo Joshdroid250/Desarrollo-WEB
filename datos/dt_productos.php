@@ -72,4 +72,81 @@ class Dt_productos extends Conexion{
             die($prod->getMessage());
         }
     }
+
+    public function borrarP($id){
+        try{
+            $this->myCon = parent::conectar();
+            $querySQL = "DELETE FROM dbkermesse.tbl_productos WHERE id_producto = ?";
+            $stm = $this->myCon->prepare($querySQL);
+            $stm->execute(array($id));
+            $this->myCon = parent::desconectar();
+        }
+            catch (Exception $e)
+            {
+                die($e->getMessage());
+            }
+    }
+    public function editProducto(Productos $cp)
+
+    {
+        try{
+            $this->myCon = parent::conectar();
+            $sql = "UPDATE dbkermesse.tbl_productos SET
+            id_comunidad = ?,
+            id_cat_producto = ?,
+            nombre = ?,
+            descripcion = ?,
+            cantidad = ?,
+            preciov_sugerido = ?,
+            estado = ?
+            WHERE id_producto = ?";
+
+        $this->myCon->prepare($sql)
+        ->execute(
+            array(
+                $cp->__GET('id_producto'),
+                $cp->__GET('id_comunidad'),
+                $cp->__GET('id_cat_producto'),
+                $cp->__GET('nombre'),
+                $cp->__GET('descripcion'),
+                $cp->__GET('cantidad'),
+                $cp->__GET('preciov_sugerido'),
+                $cp->__GET('estado')
+                
+         
+            )
+            );
+            $this->myCon = parent::desconectar();
+        }
+        catch (Exception $e)
+        {
+            var_dump($e);
+            die($e->getMessage());
+        }
+    }
+
+    public function registrarPorducto(Productos $cp)
+    {
+        try
+        {
+            $this->myCon = parent::conectar();
+            $sql = "INSERT INTO dbkermesse.tbl_productos (id_producto, id_comunidad, id_cat_producto, nombre, descripcion, cantidad, preciov_sugerido, estado) values (?,?,?,?,?,?,?,?)";
+            $this->myCon->prepare($sql)
+            ->execute(array(
+                $cp->__GET('id_producto'),
+                $cp->__GET('id_comunidad'),
+                $cp->__GET('id_cat_producto'),
+                $cp->__GET('nombre'),
+                $cp->__GET('descripcion'),
+                $cp->__GET('cantidad'),
+                $cp->__GET('preciov_sugerido'),
+                $cp->__GET('estado')
+            ));
+            $this->myCon = parent::desconectar();
+        }
+        catch(Exception $e)
+        {
+                die($e->getMessage());
+        }
+    }
 }
