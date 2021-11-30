@@ -1,19 +1,19 @@
 <?php
 
-
 error_reporting(0);
+//IMPORTAMOS ENTIDADES Y DATOS
 
-include '../../datos/dt_lista_preciodet.php';
-include '../../entidades/listaprecio_det.php';
-//IMPORTAMOS ENTIDADES
 include '../../entidades/usuario.php';
 include '../../entidades/rol.php';
 include '../../entidades/opciones.php';
-//IMPORTAMOS DATOS
+
+
+include '../../datos/dt_Usuario.php';
 include '../../datos/dt_Rol.php';
 include '../../datos/dt_opciones.php';
 
-//ENTIDADES
+//SEGURIDAD//
+
 $usuario = new Usuario();
 $rol = new Rol();
 $listOpc = new Opciones();
@@ -21,23 +21,13 @@ $listOpc = new Opciones();
 $dtr = new Dt_Rol();
 $dtOpc = new Dt_Opciones();
 
-
-
-$dtcg = new dt_lista_preciodet();
-
-$varMsj = 0;
-if(isset($varMsj))
-{
-    $varMsj = $_GET['msj'];
-}
-
 //MANEJO Y CONTROL DE LA SESION
 session_start(); // INICIAMOS LA SESION
 
 //VALIDAMOS SI LA SESION ESTÁ VACÍA
 if (empty($_SESSION['acceso'])) { 
     //nos envía al inicio
-    header("Location: login.php?msj=2");
+    header("Location: ../../login.php?msj=2");
 }
 
 $usuario = $_SESSION['acceso']; // OBTENEMOS EL VALOR DE LA SESION
@@ -88,28 +78,40 @@ if(!$acceso)
     //ACCESO NO CONCEDIDO 
     header("Location: ../../401.php"); //REDIRECCIONAMOS A LA PAGINA DE ACCESO RESTRINGIDO
 }
-?>
 
+// 
+$dtu = new Dt_Usuario();
+
+//variable de control msj
+$varMsj = 0;
+if(isset($varMsj))
+{ 
+  $varMsj = $_GET['msj'];
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>dbkermesse | Tabla Lista precios detalle</title>
+  <title>HR | Table Regions</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="../../plugins/DataTables1.11.2-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/DataTables1.11.2-/Responsive-2.2.9/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/DataTables1.11.2/Buttons-2.0.0/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/DataTables1.11.2/datatables.min.css">
+    <link rel="stylesheet" href="../../plugins/DataTables1.11.2/Responsive-2.2.9/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/DataTables1.11.2/Buttons-2.0.0/css/buttons.bootstrap4.min.css">
+  <!-- jAlert css  -->
+  <link rel="stylesheet" href="../../plugins/jAlert/dist/jAlert.css" />
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
-
 <body class="hold-transition sidebar-mini">
 
 <div class="wrapper">
@@ -140,14 +142,104 @@ if(!$acceso)
       </div>
     </form>
 
-     <!-- Right navbar links -->
-     <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="../../login.php" title="Cerrar Sesion">
-            <i class="fas fa-power-off"></i> Cerrar Sesion
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
           </a>
-        </li>
-      </ul>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+          <i class="fas fa-th-large"></i>
+        </a>
+      </li>
+    </ul>
   </nav>
   <!-- /.navbar -->
 
@@ -415,106 +507,31 @@ if(!$acceso)
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Control
+                Tables
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class=""></i>
-                  <p>
-                    Productos
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="tbl_productos.php" class="nav-link">
+                <a href="../tables/simple.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Productos</p>
-                </a>
-              </li>
-               <li class="nav-item">
-                <a href="tbl_categoria_productos.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Categorias</p>
-                </a>
-              </li>
-                </ul>
-              </li>
-
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class=""></i>
-                  <p>
-                    Gastos
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="tbl_gastos.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Gastos</p>
+                  <p>Simple Tables</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="tbl_categoria_gastos.php" class="nav-link">
+                <a href="../tables/data.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Categorias</p>
-                </a>
-              </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class=""></i>
-                  <p>
-                    Kermesse
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                <li class="nav-item">
-                <a href="tbl_parroquia.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Parroquia</p>
-                </a>
-                </li>
-                <li class="nav-item">
-                <a href="tbl_kermesse.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kermesse</p>
-                  </a>
-                </li>
-                </a>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class=""></i>
-                <p>
-                  Lista precio
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="tbl_listaPrecioDet.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Detalle precio</p>
+                  <p>DataTables</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="tbl_listaPrecio.php" class="nav-link">
+                <a href="../tables/jsgrid.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Lista de precio</p>
+                  <p>jsGrid</p>
                 </a>
               </li>
             </ul>
@@ -913,83 +930,99 @@ if(!$acceso)
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item active">Precio</li>
+              <li class="breadcrumb-item active">Usuarios</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
 
-
-        <div class="row">
+    <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-              <h3 class="card-title">Lista detalle precio</h3>
+                    <h3 class="card-title">Usuarios registrados</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group col-md-12" style="text-align: right;">
+                  <a href="frm_usuario.php" title="Registrar un nuevo Usuario" target="_blank"><i class="far fa-2x fa-plus-square"></i></a>
                 </div>
-                <div class="card-body">
-                    <div class="form-group col-md-12" style="text-align:right">
-                    <a href="frm_listaPrecioDet.php" title="Nueva Lista precio" target="blank"><i class="far fa-plus-square"></i>Nuevo lista precio det</a>
-                    </div>
-                <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped">
                   <thead>
-
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre Categoria</th>
-                    <th>Descripcion</th>
-                    <th>Estado</th>
-                  </tr>
-
+                    <tr>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>Nombre completo </th>
+                        <th>Email </th>
+                        <th>Estado </th>
+                        <th>Acciones</th>
+                    </tr>
                   </thead>
-
                   <tbody>
-
-                  <?php
-                  foreach($dtcg -> listaprecioDet() as $r):
+                  <?php  
+                    foreach($dtu->listUser() as $r):
+                      $estadoUser = "";
+                      if($r->__GET('estado')==1 || $r->__GET('estado')==2){
+                        $estadoUser = "Activo";
+                      }
+                      else{
+                        $estadoUser = "Inactivo";
+                      }
                   ?>
+                    <tr>
+                        <td><?php echo $r->__GET('id_usuario');  ?></td>
+                        <td><?php echo $r->__GET('usuario');  ?></td>
+                        <td><?php echo $r->__GET('nombres');  ?><?php echo ' ' ?><?php echo $r->__GET('apellidos');  ?></td>
+                        <td><?php echo $r->__GET('email');  ?></td>
+                        <td><?php echo $estadoUser  ?></td>
+                        <td>
+                          <a href="#" target="_blank">
+                              <i class="far fa-2x fa-edit" title="Editar Usuario"></i>
+                          </a>
+                          &nbsp;&nbsp;
+                          <a href="#" target="_blank">
+                          <i class="far fa-2x fa-eye" title="Visualizar Usuario"></i>
+                          </a>
+                          &nbsp;&nbsp;
+                          <!-- PRIMERA FORMA -->
+                          <!-- <a href="../../negocio/ng_Countries.php?delC=<?php echo $r->__GET('country_id');  ?>" target="_blank">
+                          <i class="far fa-2x fa-trash-alt" title="Eliminar País"></i>
+                          </a> -->
+                          <!-- SEGUNDA FORMA -->
+                          <a href="#" onclick="deleteUser(<?php echo $r->__GET('id_usuario');  ?>);">
+                          <i class="far fa-2x fa-trash-alt" title="Eliminar Usuario"></i>
+                          </a>
 
-                  <tr>
-                    <td><?php echo $r->__GET('id_listaprecio_det');  ?></td>
-                    <td><?php echo $r->__GET('id_lista_precio');  ?></td>
-                    <td><?php echo $r->__GET('id_producto');  ?></td>
-                    <td><?php echo $r->__GET('precio_venta');  ?></td>
-                    <td> <a href="frm_edit_listaPrecioDet.php?editp=<?php echo $r->__GET('id_listaprecio_det');?>" target="blank">
-                    <i class="far fa-edit" title="Editar lista precio"></i></a>
-                    &nbsp;&nbsp;
-                    <a href="frm_view_listaPrecioDet.php?viewLp=<?php echo $r->__GET('id_listaprecio_det');?>" target="blank">
-                    <i class="far fa-eye" title="Ver precio"></i></a>
-                    &nbsp;&nbsp;
-                    <a href="#" target="_blank">
-                      <i class="far fa-trash-alt" title="Eliminar"></i>
-                    </a>
-                    </td>
-                  </tr>
-                  <?php
-                  endforeach;
-                  ?>
+                      
+                      </td>
 
 
+                    </tr>
+                    <?php  
+                      endforeach;
+                    ?>
                   </tbody>
-
                   <tfoot>
-
-                  <tr>
-                  <th>ID</th>
-                    <th>ID lista precio</th>
-                    <th>ID producto</th>
-                    <th>precio de venta</th>
-                  </tr>
-
+                    <tr>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>Nombre completo </th>
+                        <th>Email </th>
+                        <th>Estado </th>
+                        <th>Acciones</th>
+                    </tr>
                   </tfoot>
-                  </table>
-                </div>
+                </table>
+              </div>
             </div>
-        </div>
+          </div>
     </div>
- 
 
 
+
+
+
+<!-- /.content-wrapper -->
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.1.0-rc
@@ -1010,10 +1043,7 @@ if(!$acceso)
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-
-
-
-<script src="../../plugins/DataTables1.11.2/datatables.min.css"></script>
+<script src="../../plugins/DataTables1.11.2/datatables.min.js"></script>
 <script src="../../plugins/DataTables1.11.2/Responsive-2.2.9/js/responsive.bootstrap4.min.js"></script>
 <script src="../../plugins/DataTables1.11.2/Responsive-2.2.9/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/DataTables1.11.2/Responsive-2.2.9/js/responsive.dataTables.min.js"></script>
@@ -1026,7 +1056,9 @@ if(!$acceso)
 <script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.print.min.js"></script>
 <script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.colVis.min.js"></script>
 
-
+ <!-- jAlert js -->
+ <script src="../../plugins/jAlert/dist/jAlert.min.js"></script>
+ <script src="../../plugins/jAlert/dist/jAlert-functions.min.js"> //optional!!</script>
 
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
@@ -1034,12 +1066,61 @@ if(!$acceso)
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
-  $(function () {
+
+  function deleteUser(idU)
+  {
+    // SEGUNDA FORMA - INCLUYE EL API DE JALERT
+    confirm(function(e,btn)
+      { //event + button clicked
+          e.preventDefault();
+          window.location.href = "../../negocio/ng_Usuario.php?delU="+idU;
+          //successAlert('Confirmed!');
+      }, 
+      function(e,btn)
+      {
+          e.preventDefault();
+          //errorAlert('Denied!');
+      });
+  }
+
+  $(document).ready(function ()
+    {
+     /////////// VARIABLE DE CONTROL MSJ ///////////
+      var mensaje = 0;
+      mensaje = "<?php echo $varMsj ?>";
+
+      if(mensaje == "1")
+      {
+          successAlert('Éxito', 'Los datos han sido registrados exitosamente!');
+      }
+      if(mensaje == "2" || mensaje == "4")
+      {
+          errorAlert('Error', 'Revise los datos e intente nuevamente!!!');
+      }
+      if(mensaje == "3")
+      {
+          successAlert('Éxito', 'Los datos han sido editados exitosamente!');
+      }
+      if(mensaje == "5")
+      {
+          successAlert('Éxito', 'Los datos han sido eliminados exitosamente!');
+      }
+      if(mensaje == "6")
+      {
+          successAlert('Éxito', 'verifique que el pais no tenga registro asociados!');
+      }
+      
+    ///////////////////////////////////////////////
+
+    /////////// DATATABLE ///////////
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      "responsive": true, 
+      "lengthChange": false, 
+      "autoWidth": false,
+      "buttons": ["excel", "pdf"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
+    
+    /* $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,
@@ -1047,10 +1128,13 @@ if(!$acceso)
       "info": true,
       "autoWidth": false,
       "responsive": true,
-    });
-  });
+    }); */
+  /////////////////////////////////////////////
+
+});//FIN  $(document).ready()
+</script>
 
 
-  </script>
+
 </body>
 </html>

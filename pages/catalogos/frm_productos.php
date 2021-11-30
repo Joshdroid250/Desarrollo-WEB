@@ -7,23 +7,8 @@ error_reporting(0);
 include '../../datos/dt_productos.php';
 include '../../entidades/productos.php';
 include '../../datos/dt_categoria_productos.php';
-include '../../entidades/categoria_productos.php';
-include '../../datos/dt_comunidad.php';
-include '../../entidades/usuario.php';
-include '../../entidades/rol.php';
-include '../../entidades/opciones.php';
-//IMPORTAMOS DATOS
-include '../../datos/dt_Rol.php';
-include '../../datos/dt_opciones.php';
+include '../../entidades/categoria_productos.php.php';
 
-//ENTIDADES
-$usuario = new Usuario();
-$rol = new Rol();
-$listOpc = new Opciones();
-//DATOS
-$dtr = new Dt_Rol();
-$dtOpc = new Dt_Opciones(); 
-$dtc = new comunidad();
 $dtp = new Dt_productos ();
 $dtcp = new Dt_categoria_productos();
 
@@ -32,62 +17,6 @@ if(isset($varMsj))
 {
     $varMsj = $_GET['msj'];
 }
-/* session_start(); // INICIAMOS LA SESION
-
-//VALIDAMOS SI LA SESION ESTÁ VACÍA
-if (empty($_SESSION['acceso'])) { 
-    //nos envía al inicio
-    header("Location: login.php?msj=2");
-}
-
-$usuario = $_SESSION['acceso']; // OBTENEMOS EL VALOR DE LA SESION
-
-//OBTENEMOS EL ROL
-$rol->__SET('id_rol', $dtr->getIdRol($usuario[0]->__GET('usuario')));
-
-//OBTENEMOS LAS OPCIONES DEL ROL
-$listOpc = $dtOpc->getOpciones($rol->__GET('id_rol'));
-
-//OBTENEMOS LA OPCION ACTUAL
-$url = $_SERVER['REQUEST_URI'];
-// var_dump($url);
-$inicio= strrpos($url, '/')+1; 
-// var_dump($inicio); //6
-// $total= strlen($url); 
-// var_dump($total); //28
-$fin= strripos($url, '?');
-// var_dump($fin); //22
-if($fin>0){
-    $miPagina = substr($url, $inicio, $fin-$inicio);
-    // var_dump($miPagina);
-}
-else{
-    $miPagina = substr($url, $inicio);
-    // var_dump($miPagina);
-}
-
-////// VALIDAMOS LA OPCIÓN ACTUAL CON LA MATRIZ DE OPCIONES //////
-//obtenemos el numero de elementos
-$longitud = count($listOpc);
-$acceso = false; // VARIABLE DE CONTROL
-
-//Recorro todos los elementos de la matriz de opciones
-for($i=0; $i<$longitud; $i++)
-    {
-      //obtengo el valor de cada elemento
-      $opcion = $listOpc[$i]->__GET('opcion_descripcion');
-      if (strcmp ($miPagina , $opcion) == 0) //COMPARO LA OPCION ACTUAL CON CADA OPCIÓN DE LA MATRIZ
-      {
-        $acceso = true; //ACCESO CONCEDIDO
-        break;
-      }
-    }
-
-if(!$acceso)
-{
-    //ACCESO NO CONCEDIDO 
-    header("Location: 401.php"); //REDIRECCIONAMOS A LA PAGINA DE ACCESO RESTRINGIDO
-} */
 ?>
 
 
@@ -137,11 +66,98 @@ if(!$acceso)
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
- 
-      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
       <li class="nav-item">
-        <a class="nav-link"  href="../../login.php" >
-          <i class="fas fa-power-off"></i>&nbsp;Cerrar Sesion
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+          <i class="fas fa-th-large"></i>
         </a>
       </li>
     </ul>
@@ -416,27 +432,102 @@ if(!$acceso)
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Tables
+                Control
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../tables/simple.html" class="nav-link">
+                <a href="#" class="nav-link">
+                  <i class=""></i>
+                  <p>
+                    Productos
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="tbl_productos.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
+                  <p>Productos</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="tbl_categoria_productos.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Categorias</p>
+                </a>
+              </li>
+                </ul>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class=""></i>
+                  <p>
+                    Gastos
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="tbl_gastos.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Gastos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../tables/data.html" class="nav-link">
+                <a href="tbl_categoria_gastos.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
+                  <p>Categorias</p>
+                </a>
+              </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class=""></i>
+                  <p>
+                    Kermesse
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="tbl_parroquia.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Parroquia</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="tbl_kermesse.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kermesse</p>
+                  </a>
+                </li>
+                </a>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class=""></i>
+                <p>
+                  Lista precio
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="tbl_listaPrecioDet.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Detalle precio</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../tables/jsgrid.html" class="nav-link">
+                <a href="tbl_listaPrecio.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>jsGrid</p>
+                  <p>Lista de precio</p>
                 </a>
               </li>
             </ul>
@@ -830,7 +921,7 @@ if(!$acceso)
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Agregar Producto</h1>
+            <h1>General Form</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -851,44 +942,44 @@ if(!$acceso)
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Registrar Producto</h3>
+                <h3 class="card-title">Registrar Gasto</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form>
                 <div class="card-body">
-                <div class="form-group">
-                    <label>ID</label>
-                    <input type="text" class="form-control" id="id_producto" name = "id_producto" placeholder="Nombre" readonly required>
-                  </div>
+                  
                   <div class="form-group">
                     <label>Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name = "nombre" placeholder="Nombre"required>
+                    <input type="text" class="form-control" id="nombre" name = "nombre" placeholder="Nombre">
                   </div>
                   <div class="form-group">
                     <label>Descripcion</label>
-                    <input type="text" class="form-control" id="comunidad" placeholder="descripcion"required>
+                    <input type="text" class="form-control" id="descripcion" placeholder="descripcion">
                   </div>
                   <div class="form-group">
-                    <label>Cantidad</label>
-                    <input type="number" class="form-control" id="cantidad" placeholder="cantidad"required>
+                    <label>Fecha Creacion</label>
+                    <input type="number" class="form-control" id="cantidad" placeholder="cantidad">
                   </div>
                   <div class="form-group">
-                    <label>Precio Sugerido</label>
-                    <input type="number" class="form-control" id="preciov_sugerido" placeholder="precio sugerido"required>
+                    <label>Fecha modificacion</label>
+                    <input type="number" class="form-control" id="preciov_sugerido" placeholder="preciov_sugerido">
                   </div>
-                 
+                  <div class="form-group">
+                    <label>Fecha eliminacion</label>
+                    <input type="number" class="form-control" id="estado" placeholder="estado">
+                  </div>
                   <div class="form-group">
                     <label>Selecciona la Categoria</label>
-                    <select name="nombre" id="id_categoria_producto" >
-                      <option value="">...</option>
+                    <select name="nombre_categoria" id="id_categoria_gastos" required>
+                      <option value="">Categorias</option>
                      
                       <?php
-                  foreach($dtcp -> listacproductos() as $cp):
+                  foreach($dtcp -> listacproductos() as $r):
                   ?>
 
                   <tr>
-                    <option value="<?php echo $cp->__GET('id_categoria_producto');  ?>"><?php echo $cp->__GET('nombre');  ?></option>
+                    <option value="<?php echo $r->__GET('id_cat_producto');  ?>"><?php echo $r->__GET('nombre');  ?></option>
                  
                 
                   </tr>
@@ -898,33 +989,6 @@ if(!$acceso)
 
 
                     </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label>Selecciona la Comunidad</label>
-                    <select name="nombre" id="id_comunidad" >
-                      <option value="">...</option>
-                     
-                      <?php
-                  foreach($dtc -> comunidad() as $cp):
-                  ?>
-
-                  <tr>
-                    <option value="<?php echo $cp->__GET('id_comunidad');  ?>"><?php echo $cp->__GET('nombre');  ?></option>
-                 
-                
-                  </tr>
-                  <?php
-                  endforeach;
-                  ?>
-
-
-                    </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label>Estado</label>
-                    <input type="number" class="form-control" id="estado" placeholder="estado" readonly required>
                   </div>
                 </div>
                   
