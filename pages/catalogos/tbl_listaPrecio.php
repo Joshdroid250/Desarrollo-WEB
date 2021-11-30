@@ -46,6 +46,7 @@ if(isset($varMsj))
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../../plugins/jAlert-master/dist/jAlert.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -1053,13 +1054,13 @@ if(isset($varMsj))
                     <td><?php echo $r->__GET('nombreListaPrecio');?></td>
                     <td><?php echo $r->__GET('nombrProducto');?></td>
                     <td><?php echo $r->__GET('precio_venta');?></td>
-                    <td> <a href="frm_edit_listaPrecioDet.php?editp=<?php echo $r->__GET('id_listaprecio_det');?>" target="blank">
+                    <td> <a href="frm_edit_listaPrecioDet.php?editLD=<?php echo $r->__GET('id_listaprecio_det');?>" target="blank">
                     <i class="far fa-edit" title="Editar lista precio"></i></a>
                     &nbsp;&nbsp;
-                    <a href="frm_view_lista.php?viewCyG=<?php echo $r->__GET('id_listaprecio_det');?>" target="blank">
+                    <a href="frm_view_listaPrecioDet.php?viewLp=<?php echo $r->__GET('id_listaprecio_det');?>" target="blank">
                     <i class="far fa-eye" title="Ver precio"></i></a>
                     &nbsp;&nbsp;
-                    <a href="#" target="_blank">
+                    <a href="../../negocio/ng_listaPrecioDet.php?delDet=<?php echo $r->__GET('id_listaprecio_det') ?>"  target="blank" >
                       <i class="far fa-trash-alt" title="Eliminar"></i>
                     </a>
                     </td>

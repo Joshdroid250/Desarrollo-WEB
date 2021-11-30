@@ -1,21 +1,24 @@
 <?php
 
 
-/*error_reporting(0);
+error_reporting(0);
+include '../../datos/dt_lista_preciodet.php';
+include '../../entidades/listaprecio_det.php';
+include '../../datos/dt_listaPrecio.php';
+include '../../entidades/lista_precio.php';
+include '../../datos/dt_productos.php';
+include '../../entidades/productos.php';
 
-include '../../datos/dt_categoria_gastos.php';
-include '../../entidades/categoria_gastos.php';
 
+$dtLD = new dt_lista_preciodet();
+$Ld = new ListaPrecioDet();
 
-$dtcg = new Dt_categoria_gastos();
-$cat = new Categoriag();
-
-$varIdCategoriaG = 0;
-if(isset($varIdCategoriaG))
+$varIdListaPrecioDet = 0;
+if(isset($varIdListaPrecioDet))
 {
-    $varIdCategoriaG = $_GET['viewCyG'];
+    $varIdListaPrecioDet = $_GET['viewLp'];
 }
-$cat = $dtcg->obtenerCategoriaG($varIdCategoriaG);*/
+$Ld = $dtLD->ObtenerlistaprecioDet($varIdListaPrecioDet);
 
 ?>
 
@@ -948,16 +951,20 @@ $cat = $dtcg->obtenerCategoriaG($varIdCategoriaG);*/
               <form>
                 <div class="card-body">
                 <div class="form-group">
-                    <label>ID Lista precio</label>
-                    <input type="number" class="form-control" id="id_lista_precio" name="id_lista_precio"placeholder="Digite id de lista precio">
+                    <label>ID Lista precio DET</label>
+                    <input readonly value="<?php echo $Ld->__GET('id_listaprecio_det') ?>" type="number" class="form-control" id="id_lista_precio_det" name="id_lista_precio_det" placeholder="">
                   </div>
                   <div class="form-group">
-                    <label>ID PRODUCTO</label>
-                    <input type="number" class="form-control" id="id_producto" name="id_producto" placeholder="Digite ID de producto">
+                    <label>Nombre lista precio</label>
+                    <input readonly value="<?php echo $Ld->__GET('nombreListaPrecio') ?>" type="text" class="form-control" id="id_lista_precio" name="id_lista_precio" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label>Nombre Producto</label>
+                    <input readonly value="<?php echo $Ld->__GET('nombrProducto') ?>" type="text" class="form-control" id="id_producto" name="id_producto" placeholder="">
                   </div>
                   <div class="form-group">
                     <label>Precio de venta</label>
-                    <input type="number" class="form-control" id="precio_venta" name="precio_venta" placeholder="Digite el precio de venta">
+                    <input value="<?php echo $Ld->__GET('precio_venta') ?>" type="number" class="form-control" id="precio_venta" name="precio_venta" placeholder="">
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -966,7 +973,7 @@ $cat = $dtcg->obtenerCategoriaG($varIdCategoriaG);*/
                   
                   <!--<button type="submit" class="btn btn-primary">Guardar</button>
                       <button type="reset" class="btn btn-danger">Cancelar</button> -->
-                  <a href="tbl_listaPrecioDet.php"><i class="far fa fa-undo-alt"></i>Regresar</a>
+                  <a href="tbl_listaPrecio.php"><i class="far fa fa-undo-alt"></i>Regresar</a>
                 
                 </div>
               </form>
@@ -1005,7 +1012,7 @@ $cat = $dtcg->obtenerCategoriaG($varIdCategoriaG);*/
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
 
-<script>
+<!-- <script>
 $(function () {
   bsCustomFileInput.init();
 });
@@ -1024,6 +1031,6 @@ $(document).ready(function()
   setCategoriasg();
 });
 
-</script>
+</script> -->
 </body>
 </html>

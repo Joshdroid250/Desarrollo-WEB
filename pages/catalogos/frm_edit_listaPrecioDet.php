@@ -1,22 +1,23 @@
 <?php
 
-/*error_reporting(0);
+error_reporting(0);
+include '../../datos/dt_lista_preciodet.php';
+include '../../entidades/listaprecio_det.php';
+include '../../datos/dt_listaPrecio.php';
+include '../../entidades/lista_precio.php';
+include '../../datos/dt_productos.php';
+include '../../entidades/productos.php';
 
-include '../../datos/dt_parroquia.php';
-include '../../entidades/parroquia.php';
-
-
-$dtpa = new dt_parroquia();
-$ca = new parroquia();
-
-$varIdParroqui = 0;
-if(isset($varIdParro))
-{
-    $varIdParroqui = $_GET['editPa'];
+$dtLista = new Dt_ListaPrecio();
+$dtProd = new Dt_Productos();
+$dtlist = new dt_lista_preciodet();
+$list = new ListaPrecioDet();
+$varIdLista = 0;
+if (isset($varIdLista)) {
+  $varIdLista = $_GET['editLD'];
 }
-$ca = $dtpa->ObtenerListaParroquia($varIdParroqui);*/
 
-
+$lista = $dtlist->ObtenerlistaprecioDet($varIdLista);
 ?>
 
 
@@ -946,21 +947,63 @@ $ca = $dtpa->ObtenerListaParroquia($varIdParroqui);*/
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form method="POST" action="../../negocio/ng_listaPrecioDet.php">
               <div class="card-body">
               <div class="form-group">
-                    <label>ID Lista precio</label>
-                    <input type="number" class="form-control" id="id_lista_precio" name="id_lista_precio"placeholder="Digite id de lista precio">
-                  </div>
-                  <div class="form-group">
-                    <label>ID PRODUCTO</label>
-                    <input type="number" class="form-control" id="id_producto" name="id_producto" placeholder="Digite ID de producto">
-                  </div>
-                  <div class="form-group">
+                      <input type="hidden" value="2" name="txtaccion" id="txtaccion" />
+                      <label>ID</label>
+                      <input readonly value="<?php echo $lista->__GET('id_listaprecio_det')?>" type="number" class="form-control" id="id_listaprecio_det" name="id_listaprecio_det" placeholder="" required>
+                      <input type="hidden" value="2" name="txtaccion" id="txtaccion"/>
+                    </div>
+              <div class="form-group">
+                      <label>Seleccione una lista precio</label>
+                      <select id="id_lista_precio" name="id_lista_precio" class="form-control">
+                        <option value="">Seleccione...</option>
+
+
+                        <?php
+
+                        foreach ($dtLista->listaPrecio() as $r) :
+                        ?>
+                          <tr>
+                            <option value="<?php echo $r->__GET('id_lista_precio'); ?>"><?php echo $r->__GET('nombre'); ?></option>
+                          </tr>
+                        <?php
+                        endforeach;
+
+                        ?>
+
+
+                      </select>
+
+                    </div>
+                    <div class="form-group">
                     <label>Precio de venta</label>
-                    <input type="number" class="form-control" id="precio_venta" name="precio_venta" placeholder="Digite el precio de venta">
+                    <input value="<?php echo $lista->__GET('precio_venta') ?>" type="number" class="form-control" id="precio_venta" name="precio_venta" placeholder="">
                   </div>
-                </div>
+                    <div class="form-group">
+                      <label>Seleccione un producto</label>
+                      <select id="id_producto" name="id_producto" class="form-control">
+                        <option value="">Seleccione...</option>
+
+
+                        <?php
+
+                        foreach ($dtProd->listaproductos() as $r) :
+                        ?>
+                          <tr>
+                            <option value="<?php echo $r->__GET('id_producto'); ?>"><?php echo $r->__GET('nombre'); ?></option>
+                          </tr>
+                        <?php
+                        endforeach;
+
+                        ?>
+
+
+                      </select>
+
+                      </div>
+              </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">

@@ -8,6 +8,7 @@ include '../../entidades/kermesse.php';
 include '../../datos/dt_kermesse.php';
 
 $dtlp = new dt_listaPrecio();
+$dtKer = new dt_kermesse();
 
 $lp = new ListaPrecio();
 $varIdlp = 0;
@@ -949,7 +950,7 @@ $lp = $dtlp->ObtenerlistaPrecio($varIdlp);
               <div class="card-body">
               <div class="form-group">
                     <label>ID</label>
-                    <input type="number" class="form-control" id="id_lista_precio" name="id_lista_precio" placeholder="">
+                    <input readonly value="<?php echo $lp->__GET('id_lista_precio'); ?>" type="number" class="form-control" id="id_lista_precio" name="id_lista_precio" placeholder="0" >
                     <input type="hidden" value="2" name="txtaccion" id="txtaccion"/>
                   </div>
               <div class="form-group">
@@ -958,11 +959,11 @@ $lp = $dtlp->ObtenerlistaPrecio($varIdlp);
                         <option value="">Seleccione</option>
 
                         <?php
-                        foreach($dtlp-> listaPrecio() as $r):
+                        foreach($dtKer-> listaKermesse() as $r):
                         ?>
                         <tr>
 
-                        <option value="<?php echo $r->__GET('id_kermesse');?>"><?php echo $r->__GET('nombreKermesse');?></option>
+                        <option value="<?php echo $r->__GET('id_kermesse');?>"><?php echo $r->__GET('nombreKerme');?></option>
 
                         </tr>
 
@@ -1029,7 +1030,7 @@ $(function () {
   bsCustomFileInput.init();
 });
 </script>
-<script>
+<!-- <script>
 function setParroquia(){
 
 $("#nombre_categoria").val("<?php echo $cat-> __GET('nombre_categoria')?>");
@@ -1043,6 +1044,6 @@ $(document).ready(function()
   setParroquia();
 });
 
-</script>
+</script> -->
 </body>
 </html>

@@ -974,7 +974,7 @@ if(isset($varMsj))
                     <td> <a href="frm_edit_listaPrecioDet.php?editp=<?php echo $r->__GET('id_listaprecio_det');?>" target="blank">
                     <i class="far fa-edit" title="Editar lista precio"></i></a>
                     &nbsp;&nbsp;
-                    <a href="frm_view_lista.php?viewCyG=<?php echo $r->__GET('id_listaprecio_det');?>" target="blank">
+                    <a href="frm_view_listaPrecioDet.php?viewLp=<?php echo $r->__GET('id_listaprecio_det');?>" target="blank">
                     <i class="far fa-eye" title="Ver precio"></i></a>
                     &nbsp;&nbsp;
                     <a href="#" target="_blank">
