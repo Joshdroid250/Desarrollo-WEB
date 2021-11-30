@@ -5,10 +5,25 @@ error_reporting(0);
 
 include '../../datos/dt_listaPrecio.php';
 include '../../entidades/lista_precio.php';
+include '../../datos/dt_kermesse.php.php';
+include '../../entidades/kermesse.php.php';
 
 
 
 $dtcg = new dt_listaPrecio();
+
+$varMsj = 0;
+if(isset($varMsj))
+{
+    $varMsj = $_GET['msj'];
+}
+
+include '../../datos/dt_lista_preciodet.php';
+include '../../entidades/listaprecio_det.php';
+
+
+
+$dtP = new dt_lista_preciodet();
 
 $varMsj = 0;
 if(isset($varMsj))
@@ -29,11 +44,6 @@ if(isset($varMsj))
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../../plugins/DataTables1.11.2-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/DataTables1.11.2-/Responsive-2.2.9/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/DataTables1.11.2/Buttons-2.0.0/css/buttons.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/jAlert-master/dist/jAlert.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
@@ -1006,6 +1016,68 @@ if(isset($varMsj))
                     <th>Nombre</th>
                     <th>Descripcion</th>
                     <th>Estado</th>
+                  </tr>
+
+                  </tfoot>
+                  </table>
+                </div>
+
+                <div class="card-header">
+              <h3 class="card-title">Detalle precio</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group col-md-12" style="text-align:right">
+                    <a href="frm_listaPrecioDet.php" title="Nueva Lista precio" target="blank"><i class="far fa-plus-square"></i>Nuevo lista precio det</a>
+                    </div>
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre lista precio</th>
+                    <th>Nombre producto</th>
+                    <th>Precio Venta</th>
+                  </tr>
+
+                  </thead>
+
+                  <tbody>
+
+                  <?php
+                  foreach($dtP -> listaprecioDet() as $r):
+                  ?>
+
+                  <tr>
+                    <td><?php echo $r->__GET('id_listaprecio_det');?></td>
+                    <td><?php echo $r->__GET('nombreListaPrecio');?></td>
+                    <td><?php echo $r->__GET('nombrProducto');?></td>
+                    <td><?php echo $r->__GET('precio_venta');?></td>
+                    <td> <a href="frm_edit_listaPrecioDet.php?editp=<?php echo $r->__GET('id_listaprecio_det');?>" target="blank">
+                    <i class="far fa-edit" title="Editar lista precio"></i></a>
+                    &nbsp;&nbsp;
+                    <a href="frm_view_lista.php?viewCyG=<?php echo $r->__GET('id_listaprecio_det');?>" target="blank">
+                    <i class="far fa-eye" title="Ver precio"></i></a>
+                    &nbsp;&nbsp;
+                    <a href="#" target="_blank">
+                      <i class="far fa-trash-alt" title="Eliminar"></i>
+                    </a>
+                    </td>
+                  </tr>
+                  <?php
+                  endforeach;
+                  ?>
+
+
+                  </tbody>
+
+                  <tfoot>
+
+                  <tr>
+                  <th>ID</th>
+                  <th>Nombre lista precio</th>
+                    <th>Nombre producto</th>
+                    <th>Precio Venta</th>
                   </tr>
 
                   </tfoot>
