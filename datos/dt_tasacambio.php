@@ -13,7 +13,7 @@ class Dt_tasacambio extends Conexion{
         {
            $this->myCon = parent::conectar();
             $result = array();
-            $querySQL = "SELECT * FROM dbkermesse.tbl_tasacambio;";
+            $querySQL = "SELECT * FROM dbkermesse.tbl_tasacambio where estado<>3;";
 
             $stm = $this->myCon->prepare($querySQL);
             $stm->execute();
@@ -72,7 +72,7 @@ class Dt_tasacambio extends Conexion{
     public function borrarTc($id){
         try{
             $this->myCon = parent::conectar();
-            $querySQL = "DELETE FROM dbkermesse.tbl_tasacambio WHERE id_tasaCambio = ?";
+            $querySQL = "UPDATE dbkermesse.tbl_tasacambio SET estado=3 WHERE id_tasaCambio = ?";
             $stm = $this->myCon->prepare($querySQL);
             $stm->execute(array($id));
             $this->myCon = parent::desconectar();
@@ -98,12 +98,13 @@ class Dt_tasacambio extends Conexion{
         $this->myCon->prepare($sql)
         ->execute(
             array(
-                $cp->__GET('id_tasaCambio'),
+                
                 $cp->__GET('id_monedaO'),
                 $cp->__GET('id_monedaC'),
                 $cp->__GET('mes'),
                 $cp->__GET('anio'),
-                $cp->__GET('estado')
+                $cp->__GET('estado'),
+                $cp->__GET('id_tasaCambio')
          
             )
             );
@@ -121,7 +122,7 @@ class Dt_tasacambio extends Conexion{
         try
         {
             $this->myCon = parent::conectar();
-            $sql = "INSERT INTO dbkermesse.tbl_categoria_producto (id_tasaCambio, id_monedaO, id_monedaC, mes, anio, estado) values (?,?,?,?,?,?)";
+            $sql = "INSERT INTO dbkermesse.tbl_tasaCambio (id_tasaCambio, id_monedaO, id_monedaC, mes, anio, estado) values (?,?,?,?,?,?)";
             $this->myCon->prepare($sql)
             ->execute(array(
                 $cp->__GET('id_tasaCambio'),

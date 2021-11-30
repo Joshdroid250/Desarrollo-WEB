@@ -13,7 +13,7 @@ class Dt_productos extends Conexion{
         {
            $this->myCon = parent::conectar();
             $result = array();
-            $querySQL = "SELECT * FROM dbkermesse.tbl_productos;";
+            $querySQL = "SELECT * FROM dbkermesse.tbl_productos where estado<>3;";
 
             $stm = $this->myCon->prepare($querySQL);
             $stm->execute();
@@ -76,7 +76,7 @@ class Dt_productos extends Conexion{
     public function borrarP($id){
         try{
             $this->myCon = parent::conectar();
-            $querySQL = "DELETE FROM dbkermesse.tbl_productos WHERE id_producto = ?";
+            $querySQL = "UPDATE dbkermesse.tbl_productos SET estado=3 WHERE id_producto = ?";
             $stm = $this->myCon->prepare($querySQL);
             $stm->execute(array($id));
             $this->myCon = parent::desconectar();

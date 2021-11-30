@@ -14,12 +14,12 @@ if ($_POST)
         case '1':
         try
         {
-          
-            $cp->__SET('id_monedaO',$_POST['id_monedaO']);
-            $cp->__SET('id_monedaC',$_POST['id_monedaC']);
+           
+            $cp->__SET('id_monedaC',$_POST['id_moneda']);
+            $cp->__SET('id_monedaO',$_POST['id_moneda']);
             $cp->__SET('mes',$_POST['mes']);
             $cp->__SET('anio',$_POST['anio']);
-            $cp->__SET('estado',$_POST['estado']);
+            $cp->__SET('estado','1');
 
             $dtcp->registrarTc($cp);
             header("Location: ../pages/catalogos/tbl_tasaCambio.php?msj=1");
@@ -31,12 +31,12 @@ if ($_POST)
         break;
         case '2': 
             try{
-                
-                $cp->__SET('id_monedaO',$_POST['id_monedaO']);
-                $cp->__SET('id_monedaC',$_POST['id_monedaC']);
+                $cp->__SET('id_tasaCambio',$_POST['id_tasaCambio']);
+                $cp->__SET('id_moneda',$_POST['id_moneda']);
+                $cp->__SET('id_moneda',$_POST['id_moneda']);
                 $cp->__SET('mes',$_POST['mes']);
                 $cp->__SET('anio',$_POST['anio']);
-                $cp->__SET('estado',$_POST['estado']);
+                $cp->__SET('estado','2');
 
             $dtcp->editTc($cp);
             header ("Location: ../pages/catalogos/tbl_tasaCambio.php?msj=3 "); 

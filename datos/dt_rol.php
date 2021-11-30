@@ -6,14 +6,35 @@ class Dt_rol extends Conexion{
 
   private $myCon;
 
+  public function getIdRol($user)
+	{
+		try
+		{
+			$this->myCon = parent::conectar();
+			$result = array();
+			$querySQL = "SELECT tbl_rol_id_rol FROM dbkermesse.vw_rol_usuario WHERE usuario= :usuario;";
 
+			$stm = $this->myCon->prepare($querySQL);
+            $stm->bindParam(':usuario', $user, PDO::PARAM_STR, 40);
+			$stm->execute();
+
+            $result = $stm->fetchColumn(0);
+
+			$this->myCon = parent::desconectar();
+			return $result;
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
     public function listarol()
     {
         try 
         {
            $this->myCon = parent::conectar();
             $result = array();
-            $querySQL = "SELECT * FROM dbkermesse.tbl_rol;";
+            $querySQL = "SELECT * FROM dbkermesse.tbl_rol where estado <>3;";
 
             $stm = $this->myCon->prepare($querySQL);
             $stm->execute();
@@ -67,7 +88,7 @@ class Dt_rol extends Conexion{
     public function borrarRol($id){
         try{
             $this->myCon = parent::conectar();
-            $querySQL = "DELETE FROM dbkermesse.tbl_rol WHERE id_rol = ?";
+            $querySQL = "UPDATE dbkermesse.tbl_rol SET estado=3 WHERE id_rol = ?";
             $stm = $this->myCon->prepare($querySQL);
             $stm->execute(array($id));
             $this->myCon = parent::desconectar();
@@ -85,14 +106,15 @@ class Dt_rol extends Conexion{
             $sql = "UPDATE dbkermesse.tbl_rol SET
             rol_descripcion = ?,
             estado = ?
-            WHERE id_rol = ?;";
+            WHERE id_rol = ?";
 
         $this->myCon->prepare($sql)
         ->execute(
             array(
-                $cp->__GET('id_rol'),
+              
                 $cp->__GET('rol_descripcion'),
-                $cp->__GET('estado')
+                $cp->__GET('estado'),
+                $cp->__GET('id_rol')
                 
          
             )

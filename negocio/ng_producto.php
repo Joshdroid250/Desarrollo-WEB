@@ -33,7 +33,7 @@ if ($_POST)
         break;
         case '2': 
             try{
-                
+                $cp->__SET('id_producto',$_POST['id_producto']);
                 $cp->__SET('id_comunidad',$_POST['id_comunidad']);
                 $cp->__SET('id_cat_producto',$_POST['id_cat_producto']);
                 $cp->__SET('nombre',$_POST['nombre']);
@@ -57,8 +57,8 @@ break;
 if ($_GET)
 {
     try{
-        $p->__SET('id_categoria_producto', $_GET['del']);
-        $dtp->borrarP($p->__GET('id_categoria_producto'));
+        $cp->__SET('id_categoria_producto', $_GET['del']);
+        $dtcp->borrarP($cp->__GET('id_categoria_producto'));
         header("Location: ../pages/catalogos/tbl_productos.php?msj=5");
     }
     catch(Exception $e)

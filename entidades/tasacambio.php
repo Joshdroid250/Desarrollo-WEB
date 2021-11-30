@@ -1,14 +1,15 @@
 <?php
 
 
-class tasaCambio{
+class TasaCambio{
 
-private $id_tasacambio;
-private $idmonedaO;
-private $idmonedaC;
+private $id_tasaCambio;
+private $id_monedaO;
+private $id_monedaC;
 private $mes;
 private $anio;
 private $estado;
+
 
 
 public function __GET($k){return $this ->$k;}

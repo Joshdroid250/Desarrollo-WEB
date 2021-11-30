@@ -6,7 +6,20 @@ error_reporting(0);
 include '../../datos/dt_rol.php';
 include '../../entidades/rol.php';
 
+/* include '../../entidades/usuario.php';
+include '../../entidades/rol.php';
+include '../../entidades/opciones.php';
+//IMPORTAMOS DATOS
+include '../../datos/dt_Rol.php';
+include '../../datos/dt_opciones.php';
 
+//ENTIDADES
+$usuario = new Usuario();
+$rol = new Rol();
+$listOpc = new Opciones();
+//DATOS
+$dtr = new Dt_Rol();
+$dtOpc = new Dt_Opciones(); */
 
 $dtcp = new Dt_rol();
 
@@ -15,6 +28,62 @@ if(isset($varMsj))
 {
     $varMsj = $_GET['msj'];
 }
+/* session_start(); // INICIAMOS LA SESION
+
+//VALIDAMOS SI LA SESION ESTÁ VACÍA
+if (empty($_SESSION['acceso'])) { 
+    //nos envía al inicio
+    header("Location: login.php?msj=2");
+}
+
+$usuario = $_SESSION['acceso']; // OBTENEMOS EL VALOR DE LA SESION
+
+//OBTENEMOS EL ROL
+$rol->__SET('id_rol', $dtr->getIdRol($usuario[0]->__GET('usuario')));
+
+//OBTENEMOS LAS OPCIONES DEL ROL
+$listOpc = $dtOpc->getOpciones($rol->__GET('id_rol'));
+
+//OBTENEMOS LA OPCION ACTUAL
+$url = $_SERVER['REQUEST_URI'];
+// var_dump($url);
+$inicio= strrpos($url, '/')+1; 
+// var_dump($inicio); //6
+// $total= strlen($url); 
+// var_dump($total); //28
+$fin= strripos($url, '?');
+// var_dump($fin); //22
+if($fin>0){
+    $miPagina = substr($url, $inicio, $fin-$inicio);
+    // var_dump($miPagina);
+}
+else{
+    $miPagina = substr($url, $inicio);
+    // var_dump($miPagina);
+}
+
+////// VALIDAMOS LA OPCIÓN ACTUAL CON LA MATRIZ DE OPCIONES //////
+//obtenemos el numero de elementos
+$longitud = count($listOpc);
+$acceso = false; // VARIABLE DE CONTROL
+
+//Recorro todos los elementos de la matriz de opciones
+for($i=0; $i<$longitud; $i++)
+    {
+      //obtengo el valor de cada elemento
+      $opcion = $listOpc[$i]->__GET('opcion_descripcion');
+      if (strcmp ($miPagina , $opcion) == 0) //COMPARO LA OPCION ACTUAL CON CADA OPCIÓN DE LA MATRIZ
+      {
+        $acceso = true; //ACCESO CONCEDIDO
+        break;
+      }
+    }
+
+if(!$acceso)
+{
+    //ACCESO NO CONCEDIDO 
+    header("Location: 401.php"); //REDIRECCIONAMOS A LA PAGINA DE ACCESO RESTRINGIDO
+} */
 ?> 
 
 
@@ -66,98 +135,9 @@ if(isset($varMsj))
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
+        <a class="nav-link"  href="../../login.php" >
+          <i class="fas fa-power-off"></i>&nbsp;Cerrar Sesion
         </a>
       </li>
     </ul>
@@ -946,6 +926,7 @@ if(isset($varMsj))
                     <th>ID</th>
                     <th>Descripcion</th>
                    
+                   
                   </tr>
 
                   </thead>
@@ -954,6 +935,14 @@ if(isset($varMsj))
 
                   <?php
                   foreach($dtcp -> listarol() as $r):
+
+                    $estado = "";
+                    if( $r->__GET('estado')==1 || $r->__GET('estado')==2) {
+                    $estado = "Activo";
+                    }
+                    else {
+                      $estado = "Inactivo";
+                    }
                   ?>
 
                   <tr>
@@ -983,6 +972,7 @@ if(isset($varMsj))
                   <tr>
                   <th>ID</th>
                     <th>Descripcion</th>
+                    
                    
                   </tr>
 
@@ -1038,34 +1028,50 @@ if(isset($varMsj))
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
-<script> 
+<script> function deleteR(id)
+        {
+            confirm(function(e,btn)
+            {
+                e.preventDefault();
+                window.location.href = "../../negocio/ng_rol.php?del="+id;
+            },
+            function(e,btn)
+            {
+                e.preventDefault();      
+            });
+        }
 
-  $(document).ready(function()
-  
-{
-  var mensaje = 0;
-  mensaje = "<?php echo $varMsj ?>";
+$(document).ready(function ()
+    {
 
-  if(mensaje == "1" )
-  {
-    sucessAlert('Exito','Registrado exitosamente!');
-  }
-  if(mensaje == "2" || mensaje=="4"|| mensaje=="6")
-  {
-    errorAlert('Error', 'intente nuevamente!');
-  }
-  if(mensaje == "3")
-  {
-    sucessAlert('Exito','Editado exitosamente!');
-  }
-  if(mensaje == "5")
-  {
-    sucessAlert('Exito','Eliminado exitosamente!');
-  }
+      var mensaje = 0;
+      mensaje = "<?php echo $varMsj ?>";
+
+      if(mensaje == "1")
+      {
+          successAlert('Éxito', 'Los datos han sido registrados exitosamente');
+      }
+      if(mensaje == "2" || mensaje == "4")
+      {
+          errorAlert('Error', 'Revise los datos e intente nuevamente');
+      }
+      if(mensaje == "3")
+      {
+          successAlert('Éxito', 'Los datos han sido editados exitosamente');
+      }
+      if(mensaje == "5")
+      {
+          successAlert('Éxito', 'Los datos han sido eliminados exitosamente');
+      }
+      if(mensaje == "6")
+      {
+          successAlert('Éxito', 'verifique que el pais no tenga registro asociados');
+      }
+      
   
 
  
-    $("#tbl_rol").DataTable({
+    $("#example1").DataTable({
       "responsive": true,
       "lengthChange": false,
       "autoWidth": false,

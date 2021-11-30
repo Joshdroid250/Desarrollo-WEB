@@ -23,7 +23,7 @@ if ($_POST)
         }
         catch(Exception $e) {
             header("Location: ../pages/catalogos/rol.php?msj=2");
-            die($e->getMessage());
+         
         }
         
         break;
@@ -31,7 +31,8 @@ if ($_POST)
 
         case '2': 
             try{
-           
+
+                $cp->__SET('id_rol',$_POST['id_rol']);
             $cp->__SET('rol_descripcion',$_POST['rol_descripcion']);
             $cp->__SET('estado','2');
 
@@ -40,7 +41,7 @@ if ($_POST)
             }
             catch(Exception $e) {
                 header("Location: ../pages/catalogos/tbl_rol.php?msj=4");
-                die($e->getMessage());
+          
             }
             break;
             default:

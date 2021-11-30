@@ -13,7 +13,7 @@ class Dt_categoria_productos extends Conexion{
         {
            $this->myCon = parent::conectar();
             $result = array();
-            $querySQL = "SELECT * FROM dbkermesse.tbl_categoria_producto;";
+            $querySQL = "SELECT * FROM dbkermesse.tbl_categoria_producto WHERE estado<>3;";
 
             $stm = $this->myCon->prepare($querySQL);
             $stm->execute();
@@ -74,15 +74,16 @@ class Dt_categoria_productos extends Conexion{
             nombre = ?,
             descripcion = ?,
             estado = ?
-            WHERE id_categoria_producto = ?";
+            WHERE id_categoria_producto = ?;";
 
         $this->myCon->prepare($sql)
         ->execute(
             array(
-                $cp->__GET('id_categoria_producto'),
+               
                 $cp->__GET('nombre'),
                 $cp->__GET('descripcion'),
-                $cp->__GET('estado')
+                $cp->__GET('estado'),
+                $cp->__GET('id_categoria_producto')
 
          
             )
@@ -120,7 +121,7 @@ class Dt_categoria_productos extends Conexion{
     public function borrarCategoriaP($id){
         try{
             $this->myCon = parent::conectar();
-            $querySQL = "DELETE FROM dbkermesse.tbl_categoria_producto WHERE id_categoria_producto = ?";
+            $querySQL = "UPDATE dbkermesse.tbl_categoria_producto SET estado=3 WHERE id_categoria_producto = ?";
             $stm = $this->myCon->prepare($querySQL);
             $stm->execute(array($id));
             $this->myCon = parent::desconectar();

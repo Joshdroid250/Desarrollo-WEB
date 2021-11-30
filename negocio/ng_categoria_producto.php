@@ -30,7 +30,7 @@ if ($_POST)
 
         case '2': 
             try{
-               
+                $cp->__SET('id_categoria_producto',$_POST['id_categoria_producto']);   
             $cp->__SET('nombre',$_POST['nombre']);
             $cp->__SET('descripcion',$_POST['descripcion']);
             $cp->__SET('estado','2');
