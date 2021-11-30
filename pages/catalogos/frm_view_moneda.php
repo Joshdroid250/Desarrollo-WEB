@@ -12,20 +12,17 @@ $mon = new Moneda();
 $varidmon = 0;
 if(isset($varidmon))
 {
-    $varidmon = $_GET['editM'];
+    $varidmon = $_GET['viewM'];
 }
 $mon = $dtmon->obtenermoneda($varidmon);
 
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Editar Moneda</title>
+  <title>AdminLTE 3 | Vista Moneda</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -921,12 +918,12 @@ $mon = $dtmon->obtenermoneda($varidmon);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Moneda</h1>
+            <h1> Lista Moneda</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item active">Editar Moneda</li>
+              <li class="breadcrumb-item active">Lista de Moneda</li>
             </ol>
           </div>
         </div>
@@ -942,35 +939,36 @@ $mon = $dtmon->obtenermoneda($varidmon);
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Editar Moneda</h3>
+                <h3 class="card-title">Ver Moneda</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="POST" action="../../negocio/ng_moneda.php">
+              <form>
                 <div class="card-body">
-                  <div class="form-group">
-                  <div class="form-group">
-                      <label >ID</label>
-                      <input type="number" class="form-control" id="id_moneda" name="id_moneda" placeholder="ID Moneda" required>
-                      <input type="hidden" value="1" name="txtaccion" id="txtaccion"/>
-                    </div>
-                    <label>Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre"placeholder="Escriba el nombre de la moneda">
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" class="form-control" id="id_moneda" name="id_moneda" placeholder="ID Moneda">
                   </div>
                   <div class="form-group">
-                    <label>Símbolo</label>
-                    <input type="text" class="form-control" id="simbolo" name="simbolo" placeholder="Escriba el simbolo">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de Moneda">
+                  </div>
+                  <div class="form-group">
+                    <label>telefono</label>
+                    <input type="text" class="form-control" id="simbolo" name="simbolo" placeholder="Simbolo de Moneda">
                   </div>
                   <div class="form-group">
                     <label>Estado</label>
-                    <input readonly type="text" class="form-control" id="estado" name="estado" placeholder="Estado">
+                    <input type="text" class="form-control" id="estado" name="estado" placeholder="Estado">
                   </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
                   
-                  <button type="submit" class="btn btn-primary">Guardar</button>
-                  <button type="reset" class="btn btn-danger">Cancelar</button>
+                  <!--<button type="submit" class="btn btn-primary">Guardar</button>
+                      <button type="reset" class="btn btn-danger">Cancelar</button> -->
+                  <a href="tbl_moneda.php"><i class="far fa fa-undo-alt"></i>Regresar</a>
+                
                 </div>
               </form>
             </div>
