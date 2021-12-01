@@ -3,7 +3,7 @@
 
 class Moneda{
 
-private $idMoneda;
+private $id_moneda;
 private $nombre;
 private $simbolo;
 private $estado;
