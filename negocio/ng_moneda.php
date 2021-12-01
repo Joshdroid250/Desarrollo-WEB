@@ -14,10 +14,8 @@ if ($_POST)
         case '1':
         try
         {
-          
             $cp->__SET('nombre',$_POST['nombre']);
             $cp->__SET('simbolo',$_POST['simbolo']);
-            $cp->__SET('estado', '1');
 
             $dtcp->registrarMoneda($cp);
             header("Location: ../pages/catalogos/tbl_moneda.php?msj=1");
@@ -30,13 +28,14 @@ if ($_POST)
 
         case '2': 
             try{
-               
+                
+            $cp->__SET('id_moneda',$_POST['id_moneda']);   
             $cp->__SET('nombre',$_POST['nombre']);
             $cp->__SET('simbolo',$_POST['simbolo']);
             $cp->__SET('estado','2');
 
             $dtcp->editMoneda($cp);
-            header ("Location: ../pages/catalogos/tbl_moneda.php?msj=3 "); 
+            header ("Location: ../pages/catalogos/tbl_moneda.php?msj=3"); 
             }
             catch(Exception $e) {
                 header("Location: ../pages/catalogos/tbl_moneda.php?msj=4");
@@ -51,7 +50,7 @@ if ($_POST)
 if ($_GET)
 {
     try{
-        $cp->__SET('id_moneda', $_GET['del']);
+        $cp->__SET('id_moneda', $_GET['delM']);
         $dtcp->borrarMoneda($cp->__GET('id_moneda'));
         header("Location: ../pages/catalogos/tbl_moneda.php?msj=5");
     }
