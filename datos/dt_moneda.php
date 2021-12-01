@@ -21,7 +21,7 @@ class Dt_moneda extends Conexion{
             {
                 $gt = new Moneda();
 
-                $gt->__SET('id_moneda', $r->idMoneda);
+                $gt->__SET('id_moneda', $r->id_moneda);
                 $gt->__SET('nombre', $r->nombre);
                 $gt->__SET('simbolo', $r->simbolo);
                 $gt->__SET('estado', $r->estado);
@@ -46,7 +46,7 @@ class Dt_moneda extends Conexion{
             $r=$stm->fetch(PDO::FETCH_OBJ);
             $gt = new Moneda();
 
-                $gt->__SET('id_moneda', $r->idMoneda);
+                $gt->__SET('id_moneda', $r->id_moneda);
                 $gt->__SET('nombre', $r->nombre);
                 $gt->__SET('simbolo', $r->simbolo);
                 $gt->__SET('estado', $r->estado);
@@ -83,16 +83,16 @@ class Dt_moneda extends Conexion{
                 $sql = "UPDATE dbkermesse.tbl_moneda SET
                 nombre = ?,
                 simbolo = ?,
-                estado = ?
+                estado = ? 
                 WHERE id_moneda = ?";
     
             $this->myCon->prepare($sql)
             ->execute(
-                array(
-                    $cp->__GET('id_moneda'),
+                array(                    
                     $cp->__GET('nombre'),
                     $cp->__GET('simbolo'),
-                    $cp->__GET('estado')
+                    $cp->__GET('estado'),
+                    $cp->__GET('id_moneda'),
                     
              
                 )
@@ -111,13 +111,12 @@ class Dt_moneda extends Conexion{
             try
             {
                 $this->myCon = parent::conectar();
-                $sql = "INSERT INTO dbkermesse.tbl_moneda (id_moneda, nombre, simbolo, estado) values (?,?,?,?)";
+                $sql = "INSERT INTO dbkermesse.tbl_moneda (nombre, simbolo, estado) values (?,?,1)";
                 $this->myCon->prepare($sql)
                 ->execute(array(
-                    $cp->__GET('id_moneda'),
+
                     $cp->__GET('nombre'),
                     $cp->__GET('simbolo'),
-                    $cp->__GET('estado')
                 ));
                 $this->myCon = parent::desconectar();
             }
