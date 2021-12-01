@@ -1,7 +1,7 @@
 <?php
 
 
-error_reporting(0);
+error_reporting(0); 
 
 include '../../datos/dt_moneda.php';
 include '../../entidades/moneda.php';
@@ -973,7 +973,7 @@ if(isset($varMsj))
                     <td> <a href="frm_edit_moneda.php?editM=<?php echo $r->__GET('id_moneda');?>" target="blank">
                     <i class="far fa-edit" title="Editar"></i></a>
                     &nbsp;&nbsp;
-                    <a href="frm_view_parroquia.php?viewM=<?php echo $r->__GET('id_moneda');?>" target="blank">
+                    <a href="frm_view_moneda.php?viewM=<?php echo $r->__GET('id_moneda');?>" target="blank">
                     <i class="far fa-eye" title="Ver"></i></a>
                     &nbsp;&nbsp;
                     <a href="../../negocio/ng_moneda.php?delM=<?php echo $r->__GET('id_moneda') ?>"  target="blank" >
@@ -1034,7 +1034,7 @@ if(isset($varMsj))
 <script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.print.min.js"></script>
 <script src="../../plugins/DataTables1.11.2/Buttons-2.0.0/js/buttons.colVis.min.js"></script>
 
-<script src="../../plugins/jAlert-master/dist/jAlert.min.js">//optional!!</script>
+<script src="../../plugins/jAlert-master/dist/jAlert.min.js">        //optional!!</script>
 <script src="../../plugins/jAlert-master/dist/jAlert-functions.min.js"></script>
 
 
@@ -1044,12 +1044,12 @@ if(isset($varMsj))
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
-<script>function deleteMoneda(id)
+<script>function deleteMoneda(idM)
         {
             confirm(function(e,btn)
             {
                 e.preventDefault();
-                window.location.href = "../../negocio/ng_moneda.php?delM="+id;
+                window.location.href = "../../negocio/ng_moneda.php?delM="+idM; 
             },
             function(e,btn)
             {

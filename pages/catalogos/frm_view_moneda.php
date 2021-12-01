@@ -947,19 +947,19 @@ $mon = $dtmon->obtenermoneda($varidmon);
                 <div class="card-body">
                 <div class="form-group">
                     <label>ID</label>
-                    <input type="text" class="form-control" id="id_moneda" name="id_moneda" placeholder="ID Moneda">
+                    <input readonly type="text" value="<?php echo $mon-> __GET('id_moneda')?>" class="form-control" id="id_moneda" name="id_moneda" placeholder="ID Moneda">
                   </div>
                   <div class="form-group">
                     <label>Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de Moneda">
+                    <input readonly type="text" value="<?php echo $mon-> __GET('nombre')?>" class="form-control" id="nombre" name="nombre" placeholder="Nombre de Moneda">
                   </div>
                   <div class="form-group">
                     <label>telefono</label>
-                    <input type="text" class="form-control" id="simbolo" name="simbolo" placeholder="Simbolo de Moneda">
+                    <input readonly type="text" value="<?php echo $mon-> __GET('simbolo')?>" class="form-control" id="simbolo" name="simbolo" placeholder="Simbolo de Moneda">
                   </div>
                   <div class="form-group">
                     <label>Estado</label>
-                    <input type="text" class="form-control" id="estado" name="estado" placeholder="Estado">
+                    <input readonly type="text" value="<?php echo $mon-> __GET('estado')?>" class="form-control" id="estado" name="estado" placeholder="Estado">
                   </div>
                 <!-- /.card-body -->
 
@@ -1011,7 +1011,7 @@ $(function () {
   bsCustomFileInput.init();
 });
 </script>
-<script>
+<!-- <script>
 function setMoneda(){
 
 $("#id_moneda").val("<?php echo $mon-> __GET('id_moneda')?>");
@@ -1025,6 +1025,6 @@ $(document).ready(function()
   setMoneda();
 });
 
-</script>
+</script> -->
 </body>
 </html>

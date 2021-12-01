@@ -951,19 +951,15 @@ $mon = $dtmon->obtenermoneda($varidmon);
                   <div class="form-group">
                   <div class="form-group">
                       <label >ID</label>
-                      <input type="number" class="form-control" id="id_moneda" name="id_moneda" placeholder="ID Moneda" required>
-                      <input type="hidden" value="1" name="txtaccion" id="txtaccion"/>
+                      <input readonly type="number" value="<?php echo $mon-> __GET('id_moneda')?>" class="form-control" id="id_moneda" name="id_moneda" placeholder="ID Moneda" required>
+                      <input type="hidden" value="2" name="txtaccion" id="txtaccion"/>
                     </div>
                     <label>Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre"placeholder="Escriba el nombre de la moneda">
+                    <input type="text" value="<?php echo $mon-> __GET('nombre')?>" class="form-control" id="nombre" name="nombre"placeholder="Escriba el nombre de la moneda">
                   </div>
                   <div class="form-group">
                     <label>Símbolo</label>
-                    <input type="text" class="form-control" id="simbolo" name="simbolo" placeholder="Escriba el simbolo">
-                  </div>
-                  <div class="form-group">
-                    <label>Estado</label>
-                    <input readonly type="text" class="form-control" id="estado" name="estado" placeholder="Estado">
+                    <input type="text" value="<?php echo $mon-> __GET('simbolo')?>" class="form-control" id="simbolo" name="simbolo" placeholder="Escriba el simbolo">
                   </div>
                 <!-- /.card-body -->
 
@@ -1013,7 +1009,7 @@ $(function () {
   bsCustomFileInput.init();
 });
 </script>
-<script>
+<!-- <script>
 function setMoneda(){
 
 $("#id_moneda").val("<?php echo $mon-> __GET('id_moneda')?>");
@@ -1027,6 +1023,6 @@ $(document).ready(function()
   setMoneda();
 });
 
-</script>
+</script> -->
 </body>
 </html>
